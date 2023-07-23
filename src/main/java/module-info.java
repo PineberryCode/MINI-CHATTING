@@ -1,6 +1,10 @@
 module com.project {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
-    exports com.project to javafx.graphics;
+    opens com.project.controller to javafx.fxml;
+
+    exports com.project.controller to javafx.fxml;
+    exports com.project;
 }
