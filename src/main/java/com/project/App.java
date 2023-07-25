@@ -2,7 +2,6 @@ package com.project;
 
 import java.io.IOException;
 
-import com.project.controller.process.RegisterProcess;
 import com.project.routes.Route;
 
 import javafx.application.Application;
