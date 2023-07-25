@@ -1,11 +1,17 @@
 package com.project.controller;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import com.project.controller.process.RegisterProcess;
 
 public class RegisterController {
+
+    private RegisterProcess registerProcess;
+
+    public RegisterController(Stage stage) throws IOException{
+        registerProcess = new RegisterProcess();
+        registerProcess.ShowFXML(stage, "view/Register", 356, 340);
+    }
 
 }

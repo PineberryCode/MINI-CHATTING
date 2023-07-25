@@ -1,22 +1,24 @@
 package com.project.controller;
 import com.project.App;
-import com.project.controller.process.RegisterProcess;
-import com.project.routes.Route;
-
+import com.project.controller.process.FacingProcess;
+import com.project.controller.process.LogInProcess;
 import java.io.IOException;
-
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 public class LogInController {
-        
-    private RegisterProcess registerProcess;
+
+    private RegisterController registerController;
+    private LogInProcess logInProcess;
+    private FacingProcess facingProcess;
+
+    /*public LogInController (Stage stage) throws IOException {
+        logInProcess = new LogInProcess();
+        logInProcess.ShowFXML(stage, "view/LogIn", 572, 431);
+    }*/
 
     @FXML
     private TextField tfUser;
@@ -24,24 +26,20 @@ public class LogInController {
     private PasswordField pfPassword;
 
     @FXML
-    private void bLogIn (ActionEvent event) throws IOException {
+    private void btnLogIn () throws IOException {
         Stage stage = App.primaryStage;
         stage.close();
-        
-        Parent parent = Route.loadFXML("view/Facing");
-        Scene scene = new Scene(parent,631,431);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+
+        facingProcess = new FacingProcess();
+        facingProcess.ShowFXML(stage, "view/Facing", 631, 431);
     }
 
     @FXML
     private void linkRegister () throws IOException {
         Stage stage = App.primaryStage;
         stage.close();
-        
-        registerProcess = new RegisterProcess();
-        registerProcess.ShowFXML(stage, "view/Register", 356, 340);
+
+        registerController = new RegisterController(stage);
     }
 
 }
