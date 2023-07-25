@@ -5,15 +5,22 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="356.0" style="-fx-background-radius: 10; -fx-border-radius: 40;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="356.0" style="-fx-background-radius: 10; -fx-border-radius: 40;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.controller.RegisterController">
    <children>
-      <TextField layoutX="105.0" layoutY="132.0" prefHeight="40.0" prefWidth="200.0" promptText="Username" />
-      <PasswordField layoutX="34.0" layoutY="198.0" prefHeight="40.0" prefWidth="200.0" promptText="Password" />
-      <TextField layoutX="26.0" layoutY="77.0" prefHeight="40.0" prefWidth="200.0" promptText="E-mail" />
-      <Label layoutX="118.0" layoutY="32.0" prefHeight="17.0" prefWidth="121.0" text="WELCOME TO BNKER" />
-      <Button layoutX="79.0" layoutY="275.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="JOIN US" />
-      <VBox prefHeight="340.0" prefWidth="356.0" style="-fx-border-radius: 40;" />
+      <VBox prefHeight="340.0" prefWidth="356.0" style="-fx-border-radius: 40;">
+         <children>
+            <Pane prefHeight="342.0" prefWidth="356.0">
+               <children>
+                  <TextField fx:id="tfUsername" layoutX="128.0" layoutY="134.0" prefHeight="40.0" prefWidth="200.0" promptText="Username" />
+                  <PasswordField fx:id="pfPassword" layoutX="28.0" layoutY="194.0" prefHeight="40.0" prefWidth="200.0" promptText="Password" />
+                  <TextField fx:id="tfE_mail" layoutX="28.0" layoutY="73.0" prefHeight="40.0" prefWidth="200.0" promptText="E-mail" />
+                  <Label layoutX="118.0" layoutY="30.0" prefHeight="17.0" prefWidth="121.0" text="WELCOME TO BNKER" />
+                  <Button layoutX="78.0" layoutY="267.0" mnemonicParsing="false" onAction="#RegisterUser" prefHeight="40.0" prefWidth="200.0" text="JOIN US" />
+               </children>
+            </Pane>
+         </children></VBox>
    </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ import com.project.controller.process.LogInProcess;
 import com.project.routes.Route;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -30,14 +31,6 @@ public class App extends Application {
 
         loginProcess = new LogInProcess();
         loginProcess.ShowFXML(arg0, "view/LogIn", 572, 431);
-        /*Route.scene = new Scene(Route.loadFXML("view/LogIn"), 572,431);
-        Route.scene.setFill(Color.TRANSPARENT);
-        arg0.setResizable(false);
-        arg0.setScene(Route.scene);
-        arg0.show();*/
-        //logInController = new LogInController(arg0);
     }
-
-    //fx:controller="com.project.controller.LogInController"
     
 }
