@@ -8,7 +8,7 @@ public abstract class Movible {
     private double xOffset = 0;
     private double yOffset = 0;
 
-    public void movile (Scene scene, Stage stage) {
+    public void moving (Scene scene, Stage stage) {
         scene.setOnMousePressed((MouseEvent e) -> {
             xOffset = e.getSceneX();
             yOffset = e.getSceneY();
