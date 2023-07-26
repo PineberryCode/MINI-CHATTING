@@ -11,6 +11,7 @@ module com.project {
     requires spring.beans;
     requires spring.context;
     requires spring.data.mongodb;
+    requires spring.security.crypto;
 
     opens com.project.controller to javafx.fxml;
 
