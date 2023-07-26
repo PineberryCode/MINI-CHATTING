@@ -10,8 +10,6 @@ import com.project.controller.process.RegisterProcess;
 
 public class RegisterController {
 
-    private RegisterProcess registerProcess;
-
     /*
      * Components
      */

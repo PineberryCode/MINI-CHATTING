@@ -1,22 +1,19 @@
 package com.project.controller;
 import com.project.App;
 import com.project.controller.process.FacingProcess;
-import com.project.controller.process.LogInProcess;
 import com.project.controller.process.RegisterProcess;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
 public class LogInController {
 
     private RegisterController registerController;
     private RegisterProcess registerProcess;
-    private LogInProcess logInProcess;
+    //private LogInProcess logInProcess;
     private FacingProcess facingProcess;
 
     @FXML
@@ -29,8 +26,8 @@ public class LogInController {
         Stage stage = App.primaryStage;
         stage.close();
 
-        /*facingProcess = new FacingProcess();
-        facingProcess.ShowFXML(stage, "view/Facing", 631, 431);*/
+        facingProcess = new FacingProcess();
+        facingProcess.ShowFXML(stage, "view/Facing", 631, 431);
     }
 
     @FXML

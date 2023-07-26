@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.project.routes.Route;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
