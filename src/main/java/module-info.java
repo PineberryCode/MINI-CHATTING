@@ -7,6 +7,11 @@ module com.project {
     requires org.mongodb.driver.sync.client;
     requires org.mongodb.driver.core;
 
+    //Spring dependencies
+    requires spring.beans;
+    requires spring.context;
+    requires spring.data.mongodb;
+
     opens com.project.controller to javafx.fxml;
 
     exports com.project.controller to javafx.fxml;

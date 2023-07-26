@@ -11,15 +11,18 @@ import javafx.stage.Stage;
 
 public class LogInController {
 
-    private RegisterController registerController;
     private RegisterProcess registerProcess;
-    //private LogInProcess logInProcess;
     private FacingProcess facingProcess;
 
     @FXML
     private TextField tfUser;
     @FXML
     private PasswordField pfPassword;
+
+    private void ValidateCredentials () {
+        String username = tfUser.getText();
+        String password = pfPassword.getText();
+    }
 
     @FXML
     private void btnLogIn () throws IOException {
