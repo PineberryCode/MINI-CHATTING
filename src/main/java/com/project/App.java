@@ -16,8 +16,8 @@ public class App extends Application {
     private static MongoClientConnection mongoConnection;
 
     public static void main (String[] args) {
-        mongoConnection = new MongoClientConnection();
-        mongoConnection.getConnection();
+        /*mongoConnection = new MongoClientConnection();
+        mongoConnection.getConnection();*/
         launch(args);
     }
 

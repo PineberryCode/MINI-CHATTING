@@ -24,6 +24,8 @@ public class LogInController {
     private void ValidateCredentials () {
         String username = tfUser.getText();
         String password = pfPassword.getText();
+        
+        login_CRUD = new LogIn_CRUD();
         login_CRUD.validate(username, password);
     }
 
@@ -32,7 +34,7 @@ public class LogInController {
         Stage stage = App.primaryStage;
         stage.close();
 
-        //this.ValidateCredentials();
+        this.ValidateCredentials();
 
         facingProcess = new FacingProcess();
         facingProcess.ShowFXML(stage, "view/Facing", 631, 431);
