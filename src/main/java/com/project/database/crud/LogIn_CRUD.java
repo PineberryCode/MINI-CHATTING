@@ -3,6 +3,7 @@ package com.project.database.crud;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.project.database.MongoClientConnection;
 import com.project.model.User;
@@ -26,14 +27,17 @@ public class LogIn_CRUD {
             database = MongoClientConnection.getInstance().getDatabase();
             mongoClient = MongoClientConnection.getInstance().getMongoClient();
             MongoCollection<Document> collection = database.getCollection("user");
-            //Modify then...
-            Document query = new Document("_id", new ObjectId("64c0569a488e6f020645c23f"));
-            Document result = collection.find(query).first();
-            if (result.getString("username").equals(username) 
-            && result.getString("password").equals(password)) {
-                validating = true;
-            } else {
-                validating = false;
+            MongoCursor<Document> cursor = collection.find().iterator();
+            
+            while (cursor.hasNext()) {
+                Document userDocument = cursor.next();
+                if (userDocument.getString("username").equals(username) &&
+                    userDocument.getString("password").equals(password)) {
+                    validating = true;
+                    break;
+                } else {
+                    validating = false;
+                }
             }
         } catch (MongoException e) {
             System.out.println(e.getMessage());

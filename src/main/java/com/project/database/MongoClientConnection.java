@@ -23,24 +23,9 @@ public class MongoClientConnection {
         .applyConnectionString(new ConnectionString(connection))
         .serverApi(serverApi).build();
 
-        //try (MongoClient mongoClient = MongoClients.create(settings)) { // Close connection automatically
         try {
             mongoClient = MongoClients.create(settings);
             database = this.mongoClient.getDatabase("BNKERDB");
-            //System.out.println(database);
-            //
-            /*MongoCollection<Document> mongoCollection = database.getCollection("user");
-            Document query = new Document("_id", new ObjectId("64c0569a488e6f020645c23f"));
-            System.out.println(query);
-            Document result = mongoCollection.find(query).first();
-            if (result != null) {
-                System.out.println(result.getString("e_mail"));
-            } else {
-                System.out.println("Not found any users");
-            }*/
-            //database.runCommand(new Document("_id", new ObjectId("64c0569a488e6f020645c23f")));
-            //System.out.println("Pinged your deployment. You successfully connected to MongoDB!");
-            //mongoClient.close();
         } catch (MongoException e) {
             e.printStackTrace();
         }
