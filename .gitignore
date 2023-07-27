@@ -1,0 +1,3 @@
+.vscode/
+src/main/java/com/project/test/*.java
+target/classes/com/project/test/*.java
