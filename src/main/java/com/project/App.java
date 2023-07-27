@@ -3,7 +3,6 @@ package com.project;
 import java.io.IOException;
 
 import com.project.controller.process.LogInProcess;
-import com.project.database.MongoClientConnection;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

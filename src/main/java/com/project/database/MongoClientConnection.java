@@ -1,18 +1,12 @@
 package com.project.database;
 
-import org.bson.Document;
-import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.core.index.Index;
-
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoException;
 import com.mongodb.ServerApi;
 import com.mongodb.ServerApiVersion;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 public class MongoClientConnection {
