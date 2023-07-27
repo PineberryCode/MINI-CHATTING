@@ -3,9 +3,12 @@ import com.project.App;
 import com.project.controller.process.FacingProcess;
 import com.project.controller.process.RegisterProcess;
 import com.project.database.crud.LogIn_CRUD;
+import com.project.view.alert.MiniWindow;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -27,11 +30,16 @@ public class LogInController {
 
         login_CRUD = new LogIn_CRUD();
         boolean validating = login_CRUD.validate(username, password);
-        if (!validating) {
-            System.out.println("Incorrect credentials.");
+        if (!username.isEmpty() || !password.isEmpty()) {
+            if (!validating) {
+                //System.out.println("Incorrect credentials.");
+                MiniWindow.showInformationAlert("...","Incorrect credentials");
+            } else {
+                facingProcess = new FacingProcess();
+                facingProcess.ShowFXML(stage, "view/Facing", 631, 431);
+            }
         } else {
-            facingProcess = new FacingProcess();
-            facingProcess.ShowFXML(stage, "view/Facing", 631, 431);
+            System.out.println("Please, type your credentials.");
         }
     }
 

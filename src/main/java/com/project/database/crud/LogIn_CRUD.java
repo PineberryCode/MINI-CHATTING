@@ -35,11 +35,6 @@ public class LogIn_CRUD {
             } else {
                 validating = false;
             }
-            /*if (result != null) {
-                System.out.println(result.getString("e_mail"));
-            } else {
-                System.out.println("Not found any users");
-            }*/
         } catch (MongoException e) {
             System.out.println(e.getMessage());
         } finally {
