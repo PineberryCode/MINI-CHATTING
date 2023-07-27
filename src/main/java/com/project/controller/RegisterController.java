@@ -7,8 +7,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import com.project.controller.process.RegisterProcess;
+import com.project.database.crud.User_CRUD;
+import com.project.model.User;
 
 public class RegisterController {
+
+    private User user;
+    private User_CRUD user_CRUD;
+    private RegisterProcess registerProcess;
 
     /*
      * Components
@@ -22,13 +28,11 @@ public class RegisterController {
 
     @FXML
     private void RegisterUser () {
-        String email = tfE_mail.getText();
-        String username = tfUsername.getText();
-        String password = pfPassword.getText();
+        registerProcess = new RegisterProcess();
+        User user =  registerProcess.ReadData(tfE_mail, tfUsername, pfPassword);
 
-        System.out.println("Email: "+email+"\n"+
-                            "Username: "+username+"\n"+
-                            "Password: "+password);
+        user_CRUD = new User_CRUD();
+        user_CRUD.registration(user);
     }
 
 }

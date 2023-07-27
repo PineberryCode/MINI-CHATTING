@@ -9,11 +9,15 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 
+import lombok.Getter;
+
 public class MongoClientConnection {
     
     private static MongoClientConnection THE_ONE;
     private String connection = "mongodb+srv://MINDLUNNY:090902@cluster0.cvb3g0s.mongodb.net/?retryWrites=true&w=majority";
+    @Getter
     private MongoDatabase database;
+    @Getter
     private MongoClient mongoClient;
 
     private MongoClientConnection() {
@@ -38,11 +42,11 @@ public class MongoClientConnection {
         return THE_ONE;
     }
 
-    public MongoDatabase getDatabase () {
+    /*public MongoDatabase getDatabase () {
         return database;
-    }
+    }*/
 
-    public MongoClient getMongoClient () {
+    /*public MongoClient getMongoClient () {
         return mongoClient;
-    }
+    }*/
 }

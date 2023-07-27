@@ -13,11 +13,10 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-public class LogIn_CRUD {
+public class User_CRUD {
     
     @Autowired
     private MongoTemplate mongoTemplate;
-    private User user;
     private MongoDatabase database;
     private MongoClient mongoClient;
 
@@ -31,8 +30,8 @@ public class LogIn_CRUD {
             
             while (cursor.hasNext()) {
                 Document userDocument = cursor.next();
-                if (userDocument.getString("username").equals(username) &&
-                    userDocument.getString("password").equals(password)) {
+                if (userDocument.getString("username").equals(username) 
+                    && userDocument.getString("password").equals(password)) {
                     validating = true;
                     break;
                 } else {
@@ -53,4 +52,33 @@ public class LogIn_CRUD {
         return validating;
     }
 
+    public User registration (User user) {
+        try {
+            database = MongoClientConnection.getInstance().getDatabase();
+            mongoClient = MongoClientConnection.getInstance().getMongoClient();
+            MongoCollection<Document> collection = database.getCollection("user");
+
+            Document userDocument = new Document()
+            .append("email", user.getE_mail())
+            .append("username", user.getUsername())
+            .append("password", user.getPassword());
+
+            collection.insertOne(userDocument);
+
+            ObjectId userId = userDocument.getObjectId("_id");
+            user.setId(userId.toHexString());
+            System.out.println("Registered");
+        } catch (MongoException e) {
+            e.printStackTrace();
+        } finally {
+            if (mongoClient != null) {
+                try {
+                    mongoClient.close();
+                } catch (MongoException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return user;
+    } 
 }
