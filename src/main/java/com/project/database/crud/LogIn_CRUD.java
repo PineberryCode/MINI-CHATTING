@@ -11,9 +11,6 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class LogIn_CRUD {
     
@@ -23,22 +20,26 @@ public class LogIn_CRUD {
     private MongoDatabase database;
     private MongoClient mongoClient;
 
-    public void validate (String username, String password) {
+    public boolean validate (String username, String password) {
+        boolean validating = false;
         try {
             database = MongoClientConnection.getInstance().getDatabase();
             mongoClient = MongoClientConnection.getInstance().getMongoClient();
-            System.out.println("LogIn_CRUD: "+database);
             MongoCollection<Document> collection = database.getCollection("user");
-            System.out.println("LogIn_CRUD: "+collection);
             //Modify then...
             Document query = new Document("_id", new ObjectId("64c0569a488e6f020645c23f"));
             Document result = collection.find(query).first();
-            System.out.println("LogIn_CRUD: "+query);
-            if (result != null) {
+            if (result.getString("username").equals(username) 
+            && result.getString("password").equals(password)) {
+                validating = true;
+            } else {
+                validating = false;
+            }
+            /*if (result != null) {
                 System.out.println(result.getString("e_mail"));
             } else {
                 System.out.println("Not found any users");
-            }
+            }*/
         } catch (MongoException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -50,6 +51,7 @@ public class LogIn_CRUD {
                 }
             }
         }
+        return validating;
     }
 
 }

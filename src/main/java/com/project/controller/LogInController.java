@@ -21,12 +21,18 @@ public class LogInController {
     @FXML
     private PasswordField pfPassword;
 
-    private void ValidateCredentials () {
+    private void ValidateCredentials (Stage stage) throws IOException {
         String username = tfUser.getText();
         String password = pfPassword.getText();
-        
+
         login_CRUD = new LogIn_CRUD();
-        login_CRUD.validate(username, password);
+        boolean validating = login_CRUD.validate(username, password);
+        if (!validating) {
+            System.out.println("Incorrect credentials.");
+        } else {
+            facingProcess = new FacingProcess();
+            facingProcess.ShowFXML(stage, "view/Facing", 631, 431);
+        }
     }
 
     @FXML
@@ -34,10 +40,7 @@ public class LogInController {
         Stage stage = App.primaryStage;
         stage.close();
 
-        this.ValidateCredentials();
-
-        facingProcess = new FacingProcess();
-        facingProcess.ShowFXML(stage, "view/Facing", 631, 431);
+        this.ValidateCredentials(stage);
     }
 
     @FXML
