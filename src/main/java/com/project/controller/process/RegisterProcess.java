@@ -22,19 +22,6 @@ public class RegisterProcess extends Overview {
 
     private User user;
 
-    /*private String EncryptData (String data) {
-        RSA keygph = RSA.getInstance();
-        byte[] dataEncrypted = null;
-        try {
-            Cipher cipher = Cipher.getInstance("RSA");
-            cipher.init(Cipher.ENCRYPT_MODE, keygph.getPublicKey());
-            dataEncrypted = cipher.doFinal(data.getBytes("UTF-8"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return Base64.getEncoder().encodeToString(dataEncrypted);
-    }*/
-
     public User ReadData (TextField e_mail, TextField username, 
                             PasswordField password) 
                             throws InvalidKeyException, NoSuchAlgorithmException, 

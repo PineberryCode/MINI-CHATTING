@@ -9,18 +9,25 @@ import com.project.controller.process.LogInProcess;
 import com.project.database.MongoClientConnection;
 import com.project.model.User;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 public class User_CRUD {
-    
+
     private MongoDatabase database;
     private MongoClient mongoClient;
     private LogInProcess logInProcess;
 
+    @Getter
+    private static String username;
+
     public boolean validate (String username, String password) {
+        this.username = username;
         boolean validating = false;
         try {
             database = MongoClientConnection.getInstance().getDatabase();

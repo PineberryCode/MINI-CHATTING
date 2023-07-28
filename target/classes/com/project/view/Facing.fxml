@@ -14,7 +14,7 @@
    <children>
       <Pane prefHeight="391.0" prefWidth="572.0" style="-fx-border-radius: 40;">
          <children>
-            <Label layoutX="234.0" layoutY="44.0" text="username" />
+            <Label fx:id="lblUsername" layoutX="234.0" layoutY="44.0" text="username" />
             <TableView layoutX="44.0" layoutY="82.0" prefHeight="210.0" prefWidth="76.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="C2" />

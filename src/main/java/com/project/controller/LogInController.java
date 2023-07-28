@@ -27,10 +27,6 @@ public class LogInController {
         String username = tfUser.getText();
         String password = pfPassword.getText();
 
-        /*logInProcess = new LogInProcess();
-        String baseUsername = logInProcess.Verificate(username);
-        String basePassword = logInProcess.Verificate(password);*/
-
         user_CRUD = new User_CRUD();
         boolean validating = user_CRUD.validate(username, password);
         
