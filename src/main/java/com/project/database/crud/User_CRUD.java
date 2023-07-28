@@ -16,8 +16,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 public class User_CRUD {
     
-    @Autowired
-    private MongoTemplate mongoTemplate;
     private MongoDatabase database;
     private MongoClient mongoClient;
     private LogInProcess logInProcess;
@@ -33,15 +31,10 @@ public class User_CRUD {
             while (cursor.hasNext()) {
                 
                 Document userDocument = cursor.next();
-                /*if (userDocument.getString("username").equals(username) 
-                    && userDocument.getString("password").equals(password)) {
-                    validating = true;
-                    break;
-                } else {
-                    validating = false;
-                }*/
+
                 logInProcess = new LogInProcess();
                 String decrypted = logInProcess.DecryptData(userDocument.getString("password"));
+
                 if (userDocument.getString("username").equals(username)
                     && decrypted.equals(password)) {
                         validating = true;

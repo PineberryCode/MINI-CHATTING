@@ -40,7 +40,7 @@ public class LogInController {
                 System.out.println("Incorrect credentials");
             } else {
                 facingProcess = new FacingProcess();
-                facingProcess.ShowFXML(stage, "view/Facing", 631, 431);
+                facingProcess.ShowFXML(stage, "view/Facing", 572, 391);
             }
         } else {
             System.out.println("Please, type your credentials.");

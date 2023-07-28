@@ -39,27 +39,7 @@ public class RSA {
     public String FILE_PRIVATE = "rsa.pri";
     public String FILE_PUBLIC = "rsa.pub";
     //CDM
-    /*private RSA () {
-        
-        try {
-            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-            SecureRandom random = SecureRandom.getInstanceStrong();
-            keyPairGenerator.initialize(2048, random);
-
-            KeyPair keyPair = keyPairGenerator.generateKeyPair();
-            privateKey = keyPair.getPrivate();
-            publicKey = keyPair.getPublic();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /*public static synchronized RSA getInstance() {
-        if (THE_ONE == null) {
-            THE_ONE = new RSA();
-        }
-        return THE_ONE;
-    }*/
+    //Use Redis for the login
     protected String bytesToString(byte[] byt) {
         byte[] secondByt = new byte[byt.length+1];
         secondByt[0] = 1;
