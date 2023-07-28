@@ -6,6 +6,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 import com.project.controller.process.RegisterProcess;
 import com.project.database.crud.User_CRUD;
 import com.project.model.User;
@@ -29,10 +36,21 @@ public class RegisterController {
     @FXML
     private void RegisterUser () {
         registerProcess = new RegisterProcess();
-        User user =  registerProcess.ReadData(tfE_mail, tfUsername, pfPassword);
+        User user;
+        try {
+            user = registerProcess.ReadData(tfE_mail, tfUsername, pfPassword);
+            
+            user_CRUD = new User_CRUD();
+            user_CRUD.registration(user);
 
-        user_CRUD = new User_CRUD();
-        user_CRUD.registration(user);
+            //Below: Optimization then
+            tfE_mail.setText("");
+            tfUsername.setText("");
+            pfPassword.setText("");
+        } catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
+                | BadPaddingException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

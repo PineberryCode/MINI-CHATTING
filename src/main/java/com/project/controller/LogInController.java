@@ -1,9 +1,9 @@
 package com.project.controller;
 import com.project.App;
 import com.project.controller.process.FacingProcess;
+import com.project.controller.process.LogInProcess;
 import com.project.controller.process.RegisterProcess;
 import com.project.database.crud.User_CRUD;
-import com.project.view.alert.MiniWindow;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -16,6 +16,7 @@ public class LogInController {
     private RegisterProcess registerProcess;
     private FacingProcess facingProcess;
     private User_CRUD user_CRUD;
+    private LogInProcess logInProcess;
 
     @FXML
     private TextField tfUser;
@@ -26,13 +27,17 @@ public class LogInController {
         String username = tfUser.getText();
         String password = pfPassword.getText();
 
+        /*logInProcess = new LogInProcess();
+        String baseUsername = logInProcess.Verificate(username);
+        String basePassword = logInProcess.Verificate(password);*/
+
         user_CRUD = new User_CRUD();
         boolean validating = user_CRUD.validate(username, password);
         
         if (!username.isEmpty() || !password.isEmpty()) {
             if (!validating) {
-                MiniWindow.showInformationAlert("...","Incorrect credentials");
                 //label
+                System.out.println("Incorrect credentials");
             } else {
                 facingProcess = new FacingProcess();
                 facingProcess.ShowFXML(stage, "view/Facing", 631, 431);

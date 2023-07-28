@@ -5,6 +5,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.project.controller.process.LogInProcess;
 import com.project.database.MongoClientConnection;
 import com.project.model.User;
 
@@ -19,6 +20,7 @@ public class User_CRUD {
     private MongoTemplate mongoTemplate;
     private MongoDatabase database;
     private MongoClient mongoClient;
+    private LogInProcess logInProcess;
 
     public boolean validate (String username, String password) {
         boolean validating = false;
@@ -29,11 +31,21 @@ public class User_CRUD {
             MongoCursor<Document> cursor = collection.find().iterator();
             
             while (cursor.hasNext()) {
+                
                 Document userDocument = cursor.next();
-                if (userDocument.getString("username").equals(username) 
+                /*if (userDocument.getString("username").equals(username) 
                     && userDocument.getString("password").equals(password)) {
                     validating = true;
                     break;
+                } else {
+                    validating = false;
+                }*/
+                logInProcess = new LogInProcess();
+                String decrypted = logInProcess.DecryptData(userDocument.getString("password"));
+                if (userDocument.getString("username").equals(username)
+                    && decrypted.equals(password)) {
+                        validating = true;
+                        break;
                 } else {
                     validating = false;
                 }

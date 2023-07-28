@@ -41,12 +41,4 @@ public class MongoClientConnection {
         }
         return THE_ONE;
     }
-
-    /*public MongoDatabase getDatabase () {
-        return database;
-    }*/
-
-    /*public MongoClient getMongoClient () {
-        return mongoClient;
-    }*/
 }
