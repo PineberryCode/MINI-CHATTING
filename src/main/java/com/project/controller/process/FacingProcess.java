@@ -3,6 +3,7 @@ package com.project.controller.process;
 import com.project.database.crud.User_CRUD;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 
 public class FacingProcess extends Overview {
 
@@ -12,5 +13,9 @@ public class FacingProcess extends Overview {
 
     public void Who (Label label) {
         label.setText(user_CRUD.getUsername());
+    }
+
+    public void TableFriendly (TableView<String> tableView) {
+        
     }
 }
