@@ -20,14 +20,14 @@
                 <TableColumn prefWidth="75.0" text="C2" />
               </columns>
             </TableView>
-            <TextField layoutX="44.0" layoutY="331.0" prefHeight="25.0" prefWidth="76.0" promptText="New friend" />
-            <Button layoutX="129.0" layoutY="331.0" mnemonicParsing="false" text="Add" />
+            <TextField fx:id="addFriend" layoutX="44.0" layoutY="331.0" prefHeight="25.0" prefWidth="76.0" promptText="New friend" />
+            <Button onAction="#addingFriend" layoutX="129.0" layoutY="331.0" mnemonicParsing="false" text="Add" />
             <ScrollPane layoutX="227.0" layoutY="87.0" prefHeight="200.0" prefWidth="290.0">
                <content>
-                  <TextArea prefHeight="199.0" prefWidth="271.0" promptText="A new story?" />
+                  <TextArea fx:id="txaConversation" prefHeight="199.0" prefWidth="271.0" promptText="A new story?" />
                </content>
             </ScrollPane>
-            <TextField layoutX="227.0" layoutY="306.0" prefHeight="25.0" prefWidth="290.0" />
+            <TextField fx:id="input" layoutX="227.0" layoutY="306.0" prefHeight="25.0" prefWidth="290.0" />
          </children>
       </Pane>
    </children>
