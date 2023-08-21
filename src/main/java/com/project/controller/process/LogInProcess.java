@@ -16,19 +16,6 @@ import com.project.cryptogph.RSA;
 
 public class LogInProcess extends Overview {
 
-    /*public String Verificate (String data) { // data == username || password
-        RSA keygph = RSA.getInstance();
-        byte[] dataEncrypted = null;
-        try {
-            Cipher cipher = Cipher.getInstance("RSA");
-            cipher.init(Cipher.ENCRYPT_MODE, keygph.getPublicKey());
-            dataEncrypted = cipher.doFinal(data.getBytes("UTF-8"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return Base64.getEncoder().encodeToString(dataEncrypted);
-    }*/
-
     public String DecryptData (String data) {
         String decrypting = "";
         try {
