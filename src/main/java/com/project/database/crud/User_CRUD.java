@@ -10,12 +10,9 @@ import com.project.database.MongoClientConnection;
 import com.project.model.User;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 
 public class User_CRUD {
 

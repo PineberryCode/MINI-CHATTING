@@ -1,11 +1,12 @@
 package com.project.controller;
 
 import com.project.controller.process.FacingProcess;
+import com.project.model.User;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -25,7 +26,9 @@ public class FacingController {
     @FXML
     TextArea txaConversation;
     @FXML
-    TableColumn columnFriends;
+    TableView<User> tableFriends;
+    @FXML
+    TableColumn<User, String> columnFriends;
 
     @FXML
     private void addingFriend () {
@@ -36,7 +39,7 @@ public class FacingController {
     private void initialize () {
         facingProcess = new FacingProcess();
         facingProcess.Who(lblUsername);
-        columnFriends.setText("List Friends");
+        facingProcess.TableFriendly(tableFriends);
     }
     
 }
