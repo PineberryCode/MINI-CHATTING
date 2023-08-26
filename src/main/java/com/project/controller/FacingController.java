@@ -32,7 +32,8 @@ public class FacingController {
 
     @FXML
     private void addingFriend () {
-        System.out.println(addFriend.getText().toString());
+        facingProcess.TableFriendly(tableFriends, addFriend.getText());
+        addFriend.setText("");
     }
 
     @FXML
