@@ -50,7 +50,6 @@ public class FacingProcess extends Overview {
         tableColumn.setPrefWidth(tableView.getPrefWidth());
         tableColumn.setText("List Friends");
         
-        //final ObservableList<User> data = FXCollections.observableArrayList();
         user = new User();
         user.setUsername(addFriend);
         data.add(user);
