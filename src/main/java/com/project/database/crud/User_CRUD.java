@@ -24,7 +24,7 @@ public class User_CRUD {
     private static String username;
 
     public boolean validate (String username, String password) {
-        this.username = username;
+        this.username = username; //getUsername();
         boolean validating = false;
         try {
             database = MongoClientConnection.getInstance().getDatabase();
@@ -89,5 +89,9 @@ public class User_CRUD {
             }
         }
         return user;
-    } 
+    }
+
+    public String addingNewFriend (String username) {
+        return null;
+    }
 }
