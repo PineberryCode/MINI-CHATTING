@@ -20,9 +20,9 @@ public class LogInProcess extends Overview {
         String decrypting = "";
         try {
             RSA rsa = new RSA();
-        rsa.openFromDiskPrivateKey(rsa.FILE_PRIVATE);
-        rsa.openFromDiskPublicKey(rsa.FILE_PUBLIC);
-        decrypting = rsa.Decrypt(data);
+            rsa.openFromDiskPrivateKey(rsa.FILE_PRIVATE);
+            rsa.openFromDiskPublicKey(rsa.FILE_PUBLIC);
+            decrypting = rsa.Decrypt(data);
         } catch (InvalidKeyException | NoSuchPaddingException | IllegalBlockSizeException | 
                 BadPaddingException | NoSuchAlgorithmException | InvalidKeySpecException | IOException e) {
             e.printStackTrace();

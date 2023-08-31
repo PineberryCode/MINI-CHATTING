@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import com.project.controller.process.FacingProcess;
+import com.project.database.crud.User_CRUD;
 import com.project.model.User;
 
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.control.TextField;
 public class FacingController {
 
     private FacingProcess facingProcess;
+    private User_CRUD user_CRUD;
 
     /*
      * Components
@@ -32,13 +34,20 @@ public class FacingController {
 
     @FXML
     private void addingFriend () {
-        facingProcess.TableFriendly(tableFriends, addFriend.getText());
+        boolean exists =  user_CRUD.isExistsFriend(addFriend.getText());
+        System.out.println(exists);
+        /*if (exists) {
+            facingProcess.TableFriendly(tableFriends, addFriend.getText());
+            System.out.println("R."+exists);
+        }*/
         addFriend.setText("");
     }
 
     @FXML
     private void initialize () {
         facingProcess = new FacingProcess();
+        user_CRUD = new User_CRUD();
+
         facingProcess.Who(lblUsername);
         facingProcess.TableFriendly(tableFriends);
     }

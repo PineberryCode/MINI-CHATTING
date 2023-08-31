@@ -24,11 +24,12 @@ public class User_CRUD {
     private static String username;
 
     public boolean validate (String username, String password) {
-        this.username = username; //getUsername();
+        this.username = username;
         boolean validating = false;
         try {
             database = MongoClientConnection.getInstance().getDatabase();
             mongoClient = MongoClientConnection.getInstance().getMongoClient();
+
             MongoCollection<Document> collection = database.getCollection("user");
             MongoCursor<Document> cursor = collection.find().iterator();
             
@@ -39,7 +40,7 @@ public class User_CRUD {
                 logInProcess = new LogInProcess();
                 String decrypted = logInProcess.DecryptData(userDocument.getString("password"));
 
-                if (userDocument.getString("username").equals(username)
+                if (userDocument.getString("username").equals(getUsername())
                     && decrypted.equals(password)) {
                         validating = true;
                         break;
@@ -91,7 +92,40 @@ public class User_CRUD {
         return user;
     }
 
-    public String addingNewFriend (String username) {
-        return null;
+    public boolean isExistsFriend (String username) {
+        boolean status = false;
+        
+        try {
+            MongoDatabase database = MongoClientConnection.getInstance().getDatabase();
+            MongoClient mongoClient = MongoClientConnection.getInstance().getMongoClient();
+
+            MongoCollection<Document> collection = database.getCollection("user");
+            MongoCursor<Document> cursor = collection.find().iterator();
+
+            while (cursor.hasNext()) {
+                
+                Document userDocument = cursor.next();
+
+                if (userDocument.getString("username").equals(username)) {
+                    status = true;
+                    System.out.println("Currently exists");
+                    break;
+                } else {
+                    status = false;
+                    System.out.println("Not exists this username: "+username);
+                }
+            }
+        } catch (MongoException e) {;
+            e.printStackTrace();
+        } finally {
+            if (mongoClient != null) {
+                try {
+                    mongoClient.close();
+                } catch (MongoException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+        return status;
     }
 }

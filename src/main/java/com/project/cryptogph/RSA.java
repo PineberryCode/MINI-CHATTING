@@ -52,7 +52,7 @@ public class RSA {
         return Arrays.copyOfRange(secondByt, 1, secondByt.length);
     }
 
-    public void setPrivateKey (String key) {
+    private void setPrivateKey (String key) {
         try {
             byte[] privateKeyEncoded = stringToBytes(key);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
@@ -64,7 +64,7 @@ public class RSA {
         }
     }
 
-    public void setPublicKey (String key) {
+    private void setPublicKey (String key) {
         try {
             byte[] publicKeyEncoded = stringToBytes(key);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
