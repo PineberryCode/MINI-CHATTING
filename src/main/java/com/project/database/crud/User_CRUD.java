@@ -23,6 +23,14 @@ public class User_CRUD {
     @Getter
     private static String username;
 
+    /* The MongoDB connection is Singleton that's It isn't necessary add "finally block"
+     * to close the connection.
+    */
+    /*
+     * printStackTrace() -> Desarrollo, Depuración.
+     * getMessage() -> Usuarios finales.
+     */
+
     public boolean validate (String username, String password) throws Exception {
         this.username = username;
         boolean validating = false;
@@ -48,17 +56,8 @@ public class User_CRUD {
                     validating = false;
                 }
             }
-        } catch (MongoException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            if (this.mongoClient != null) {
-                try {
-                    this.mongoClient.close();
-                } catch (MongoException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        }
+        } catch (MongoException e) {e.printStackTrace();}
+
         return validating;
     }
 
@@ -78,17 +77,8 @@ public class User_CRUD {
             ObjectId userId = userDocument.getObjectId("_id");
             user.setId(userId.toHexString());
             System.out.println("Registered");
-        } catch (MongoException e) {
-            e.printStackTrace();
-        } finally {
-            if (mongoClient != null) {
-                try {
-                    mongoClient.close();
-                } catch (MongoException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        } catch (MongoException e) {e.printStackTrace();}
+
         return user;
     }
 
@@ -96,8 +86,8 @@ public class User_CRUD {
         boolean status = false;
         
         try {
-            MongoDatabase database = MongoClientConnection.getInstance().getDatabase();
-            MongoClient mongoClient = MongoClientConnection.getInstance().getMongoClient();
+            database = MongoClientConnection.getInstance().getDatabase();
+            mongoClient = MongoClientConnection.getInstance().getMongoClient();
 
             MongoCollection<Document> collection = database.getCollection("user");
             MongoCursor<Document> cursor = collection.find().iterator();
@@ -115,17 +105,8 @@ public class User_CRUD {
                     System.out.println("Not exists this username: "+username);
                 }
             }
-        } catch (MongoException e) {;
-            e.printStackTrace();
-        } finally {
-            if (mongoClient != null) {
-                try {
-                    mongoClient.close();
-                } catch (MongoException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        }
+        } catch (MongoException e) {e.printStackTrace();}
+        
         return status;
     }
 }

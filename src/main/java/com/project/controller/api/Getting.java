@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class Getting {
     
-    private final static String urlString = "http://localhost:8080/api/v1";
+    private final static String urlString = "http://localhost:8081/api/v1";
     
     /*quarkus-api-rsa :: GET*/
     public static String PRIVATE_KEY () {

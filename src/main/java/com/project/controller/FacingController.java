@@ -36,10 +36,12 @@ public class FacingController {
     private void addingFriend () {
         boolean exists =  user_CRUD.isExistsFriend(addFriend.getText());
         System.out.println(exists);
-        /*if (exists) {
-            facingProcess.TableFriendly(tableFriends, addFriend.getText());
+        if (exists) {
+            //facingProcess.TableFriendly(tableFriends, addFriend.getText());
             System.out.println("R."+exists);
-        }*/
+        } else {
+            System.out.println("Not exists");
+        }
         addFriend.setText("");
     }
 

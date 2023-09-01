@@ -1,6 +1,5 @@
 package com.project.controller;
 import com.project.App;
-import com.project.controller.api.Getting;
 import com.project.controller.process.FacingProcess;
 import com.project.controller.process.LogInProcess;
 import com.project.controller.process.RegisterProcess;
@@ -33,9 +32,7 @@ public class LogInController {
         
         if (!username.isEmpty() || !password.isEmpty()) {
             if (!validating) {
-                //label
                 System.out.println("Incorrect credentials");
-                //System.out.println(Getting.PRIVATE_KEY());
             } else {
                 facingProcess = new FacingProcess();
                 facingProcess.ShowFXML(stage, "view/Facing", 572, 391);

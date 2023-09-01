@@ -3,3 +3,4 @@
 src/main/java/com/project/test/*.java
 target/classes/com/project/test/*.class
 src/main/java/com/project/test/tmp/
+/src/main/java/com/project/database/config/*.java

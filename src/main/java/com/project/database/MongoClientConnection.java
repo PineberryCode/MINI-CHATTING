@@ -8,13 +8,14 @@ import com.mongodb.ServerApiVersion;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
+import com.project.database.config.Parameters;
 
 import lombok.Getter;
 
 public class MongoClientConnection {
     
     private static MongoClientConnection THE_ONE;
-    private String connection = "mongodb+srv://MINDLUNNY:090902@cluster0.cvb3g0s.mongodb.net/?retryWrites=true&w=majority";
+    
     @Getter
     private MongoDatabase database;
     @Getter
@@ -24,7 +25,7 @@ public class MongoClientConnection {
 
         ServerApi serverApi = ServerApi.builder().version(ServerApiVersion.V1).build();
         MongoClientSettings settings = MongoClientSettings.builder()
-        .applyConnectionString(new ConnectionString(connection))
+        .applyConnectionString(new ConnectionString(Parameters.connection))
         .serverApi(serverApi).build();
 
         try {
