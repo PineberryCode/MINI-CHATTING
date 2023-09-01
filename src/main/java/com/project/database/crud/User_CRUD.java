@@ -23,7 +23,7 @@ public class User_CRUD {
     @Getter
     private static String username;
 
-    public boolean validate (String username, String password) {
+    public boolean validate (String username, String password) throws Exception {
         this.username = username;
         boolean validating = false;
         try {

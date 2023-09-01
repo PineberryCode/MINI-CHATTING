@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -48,7 +49,7 @@ public class RegisterController {
             tfUsername.setText("");
             pfPassword.setText("");
         } catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
-                | BadPaddingException | IOException e) {
+                | BadPaddingException | InvalidKeySpecException | IOException e) {
             e.printStackTrace();
         }
     }

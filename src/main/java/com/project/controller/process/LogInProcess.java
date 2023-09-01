@@ -16,12 +16,12 @@ import com.project.cryptogph.RSA;
 
 public class LogInProcess extends Overview {
 
-    public String DecryptData (String data) {
+    public String DecryptData (String data) throws Exception {
         String decrypting = "";
         try {
-            RSA rsa = new RSA();
-            rsa.openFromDiskPrivateKey(rsa.FILE_PRIVATE);
-            rsa.openFromDiskPublicKey(rsa.FILE_PUBLIC);
+            RSA rsa = RSA.getInstance();
+            //rsa.openFromDiskPrivateKey(rsa.FILE_PRIVATE);
+            //rsa.openFromDiskPublicKey(RSA.path_file);
             decrypting = rsa.Decrypt(data);
         } catch (InvalidKeyException | NoSuchPaddingException | IllegalBlockSizeException | 
                 BadPaddingException | NoSuchAlgorithmException | InvalidKeySpecException | IOException e) {
