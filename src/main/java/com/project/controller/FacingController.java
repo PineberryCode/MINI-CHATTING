@@ -35,10 +35,8 @@ public class FacingController {
     @FXML
     private void addingFriend () {
         boolean exists =  user_CRUD.isExistsFriend(addFriend.getText());
-        System.out.println(exists);
         if (exists) {
-            //facingProcess.TableFriendly(tableFriends, addFriend.getText());
-            System.out.println("R."+exists);
+            facingProcess.TableFriendly(tableFriends, addFriend.getText());
         } else {
             System.out.println("Not exists");
         }

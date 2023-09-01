@@ -1,8 +1,5 @@
 package com.project.controller.process;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.project.database.crud.User_CRUD;
 import com.project.model.User;
 
