@@ -30,12 +30,12 @@ public class RegisterProcess extends Overview {
                             BadPaddingException, IOException, InvalidKeySpecException {
         RSA rsa = RSA.getInstance();
         
-        if (!RSA.getInstance().isExists()) {
-            rsa.genKeyPair(1024);
+        /*if (!RSA.getInstance().isExists()) {
+            //rsa.genKeyPair(1024);
             rsa.saveToDiskPublicKey(RSA.path_file);
         } else {
             rsa.openFromDiskPublicKey(RSA.path_file);
-        }
+        }*/
         
         user = new User();
         user.setE_mail(e_mail.getText());

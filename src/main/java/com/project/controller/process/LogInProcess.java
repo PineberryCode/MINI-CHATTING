@@ -16,7 +16,7 @@ import com.project.cryptogph.RSA;
 
 public class LogInProcess extends Overview {
 
-    public String DecryptData (String data) throws Exception {
+    public String DecryptData (String data) {
         String decrypting = "";
         try {
             RSA rsa = RSA.getInstance();
@@ -24,7 +24,7 @@ public class LogInProcess extends Overview {
             //rsa.openFromDiskPublicKey(RSA.path_file);
             decrypting = rsa.Decrypt(data);
         } catch (InvalidKeyException | NoSuchPaddingException | IllegalBlockSizeException | 
-                BadPaddingException | NoSuchAlgorithmException | InvalidKeySpecException | IOException e) {
+                BadPaddingException | NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
