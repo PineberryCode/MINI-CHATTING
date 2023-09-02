@@ -105,6 +105,7 @@ public class User_CRUD {
                 } else {
                     status = false;
                     System.out.println("Not exists this username: "+username);
+                    break;
                 }
             }
         } catch (MongoException e) {e.printStackTrace();}

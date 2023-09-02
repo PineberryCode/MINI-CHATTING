@@ -1,8 +1,10 @@
 package com.project.controller.process;
 
+
 import com.project.database.crud.User_CRUD;
 import com.project.model.User;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
@@ -22,40 +24,46 @@ public class FacingProcess extends Overview {
         label.setText(User_CRUD.getUsername());
     }
 
-    public void TableFriendly (TableView<User> tableView) {
+    public void TableFriendly (TableView<User> tableView) { //Default new User //String to User
 
         TableColumn<User, String> tableColumn = new TableColumn<>();
         tableColumn.setPrefWidth(tableView.getPrefWidth());
         tableColumn.setText("List Friends");
-        
-        /*final ObservableList<User> data = FXCollections.observableArrayList(
-            /*new User("PineberryCode"),
-            new User("Da")
-        );*/
 
         tableColumn.setCellValueFactory(
             new PropertyValueFactory<User, String>("username")
         );
 
         tableView.getColumns().add(tableColumn);
-        //tableView.setItems(data);
+
     }
 
     public void TableFriendly (TableView<User> tableView, String addFriend) {
+
+        if (tableView.getItems().isEmpty()) {
+            tableView.getColumns().clear();
+        }
 
         TableColumn<User, String> tableColumn = new TableColumn<>();
         tableColumn.setPrefWidth(tableView.getPrefWidth());
         tableColumn.setText("List Friends");
         
         user = new User();
-        user.setUsername(addFriend);
-        data.add(user);
+        user.setUsername(addFriend); // ?
+
+        //user.usernames.add(addFriend);
 
         tableColumn.setCellValueFactory(
             new PropertyValueFactory<User, String>("username")
         );
 
-        tableView.getColumns().add(tableColumn);
-        tableView.setItems(data);
+        if (!data.stream().anyMatch(username -> username.getUsername().equals(user.getUsername()))) {
+            data.add(user);
+            data.forEach((s) -> System.out.println(s.getUsername()));
+            tableView.getColumns().add(tableColumn);
+            tableView.setItems(data);
+        } else {
+            System.out.println("Already exists!");
+        }
     }
 }
