@@ -4,7 +4,6 @@ package com.project.controller.process;
 import com.project.database.crud.User_CRUD;
 import com.project.model.User;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
@@ -24,7 +23,7 @@ public class FacingProcess extends Overview {
         label.setText(User_CRUD.getUsername());
     }
 
-    public void TableFriendly (TableView<User> tableView) { //Default new User //String to User
+    public void TableFriendly (TableView<User> tableView) { //Default new User
 
         TableColumn<User, String> tableColumn = new TableColumn<>();
         tableColumn.setPrefWidth(tableView.getPrefWidth());
@@ -49,14 +48,15 @@ public class FacingProcess extends Overview {
         tableColumn.setText("List Friends");
         
         user = new User();
-        user.setUsername(addFriend); // ?
-
-        //user.usernames.add(addFriend);
+        user.setUsername(addFriend); // <-- Adding for the table
+        //user.usernameFriends.add(addFriend); // <-- Adding for the user
+        
 
         tableColumn.setCellValueFactory(
             new PropertyValueFactory<User, String>("username")
         );
 
+        /* Denegate to add the same friend --> */
         if (!data.stream().anyMatch(username -> username.getUsername().equals(user.getUsername()))) {
             data.add(user);
             data.forEach((s) -> System.out.println(s.getUsername()));

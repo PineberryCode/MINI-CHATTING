@@ -5,6 +5,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.UpdateResult;
 import com.project.controller.process.LogInProcess;
 import com.project.database.MongoClientConnection;
 import com.project.model.User;
@@ -13,7 +16,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.query.Update;
 
 public class User_CRUD {
 
@@ -72,7 +77,8 @@ public class User_CRUD {
             Document userDocument = new Document()
             .append("email", user.getE_mail())
             .append("username", user.getUsername())
-            .append("password", user.getPassword());
+            .append("password", user.getPassword())
+            .append("friends", user.usernameFriends);
 
             collection.insertOne(userDocument);
 
@@ -105,11 +111,34 @@ public class User_CRUD {
                 } else {
                     status = false;
                     System.out.println("Not exists this username: "+username);
-                    break;
                 }
             }
         } catch (MongoException e) {e.printStackTrace();}
 
         return status;
+    }
+
+    public void addingANewFriend (String Yo, String myFriend) { 
+        String out = "";
+        try {
+            database = MongoClientConnection.getInstance().getDatabase();
+            mongoClient = MongoClientConnection.getInstance().getMongoClient();
+            MongoCollection<Document> collection = database.getCollection("user");
+            
+            Bson filter = Filters.eq("username", Yo);
+            Bson update = Updates.push("friends", myFriend);
+
+            UpdateResult result = collection.updateOne(filter,update);
+
+            /*out = (result.getModifiedCount() > 0) ? 
+            System.out.println( Yo+"added to "+myFriend) : 
+            myFriend+" not exists :(";*/
+            if (result.getModifiedCount() > 0) {
+                System.out.println(Yo+"added to "+myFriend);
+            } else {
+                System.out.println(myFriend+" not exists");
+            }
+
+        } catch (MongoException e) {e.printStackTrace();}
     }
 }

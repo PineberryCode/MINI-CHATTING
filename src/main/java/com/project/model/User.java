@@ -15,10 +15,10 @@ public class User {
     private String username;
     private String password;
 
-    /*@Getter(AccessLevel.NONE)
+    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
-    public Set<String> usernames;
+    public Set<String> usernameFriends;
 
-    public User () {usernames = new HashSet<>();}*/
+    public User () {usernameFriends = new HashSet<>();}
     
 }
