@@ -39,12 +39,25 @@ public class FacingController {
     @FXML
     private void addingFriend () {
         String friend = addFriend.getText();
-        if (user_CRUD.isExistsFriend(friend) && friend != "") {
+        if (user_CRUD.isExistsFriend(friend) && friend != "" 
+            && friend != lblUsername.getText() && !iterateDuplicates(friend)) {
             user_CRUD.addingANewFriend(lblUsername.getText(), friend);
             tableFriends.getColumns().clear();
             facingProcess.TableFriendly(tableFriends, lblUsername.getText());
         }
         addFriend.setText("");
+    }
+
+    private boolean iterateDuplicates (String newFriend) {
+        boolean duplicate = false;
+
+        for (User user : tableFriends.getItems()) {
+            if (user.getUsername().matches(newFriend)) {
+                duplicate = true;
+            }
+        }
+        //System.out.println("Duplicate?: "+duplicate);
+        return duplicate;
     }
 
     @FXML
@@ -53,6 +66,7 @@ public class FacingController {
 
         facingProcess.Who(lblUsername);
         facingProcess.TableFriendly(tableFriends, lblUsername.getText());
+        //iterateDuplicates("mindlunny");
     }
     
 }

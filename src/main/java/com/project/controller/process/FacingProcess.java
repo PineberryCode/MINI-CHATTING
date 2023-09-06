@@ -27,22 +27,6 @@ public class FacingProcess extends Overview {
     }
 
     public void TableFriendly (TableView<User> tableView, String usernameAccount) { //Default new User
-
-        /*if (tableView.getItems().isEmpty()) {
-            tableView.getColumns().clear();
-        }
-
-        TableColumn<User, String> tableColumn = new TableColumn<>();
-        tableColumn.setPrefWidth(tableView.getPrefWidth());
-        tableColumn.setText("List Friends");
-
-        tableColumn.setCellValueFactory(
-            new PropertyValueFactory<User, String>("username")
-        );
-
-        tableView.getColumns().add(tableColumn);*/
-
-        //CRUD
         user_CRUD.listFriends(tableView, usernameAccount);
     }
 
