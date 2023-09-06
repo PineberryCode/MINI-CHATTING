@@ -1,6 +1,7 @@
 package com.project.controller.process;
 
 
+import com.project.controller.FacingController;
 import com.project.database.crud.User_CRUD;
 import com.project.model.User;
 
@@ -13,17 +14,23 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class FacingProcess extends Overview {
     final ObservableList<User> data;
+    private User_CRUD user_CRUD;
     private User user;
 
     public FacingProcess () {
         data = FXCollections.observableArrayList();
+        user_CRUD = new User_CRUD();
     }
 
     public void Who (Label label) {
         label.setText(User_CRUD.getUsername());
     }
 
-    public void TableFriendly (TableView<User> tableView) { //Default new User
+    public void TableFriendly (TableView<User> tableView, String usernameAccount) { //Default new User
+
+        /*if (tableView.getItems().isEmpty()) {
+            tableView.getColumns().clear();
+        }
 
         TableColumn<User, String> tableColumn = new TableColumn<>();
         tableColumn.setPrefWidth(tableView.getPrefWidth());
@@ -33,11 +40,13 @@ public class FacingProcess extends Overview {
             new PropertyValueFactory<User, String>("username")
         );
 
-        tableView.getColumns().add(tableColumn);
+        tableView.getColumns().add(tableColumn);*/
 
+        //CRUD
+        user_CRUD.listFriends(tableView, usernameAccount);
     }
 
-    public void TableFriendly (TableView<User> tableView, String addFriend) {
+    /*public void TableFriendly (TableView<User> tableView, String addFriend) {
 
         if (tableView.getItems().isEmpty()) {
             tableView.getColumns().clear();
@@ -57,7 +66,7 @@ public class FacingProcess extends Overview {
         );
 
         /* Denegate to add the same friend --> */
-        if (!data.stream().anyMatch(username -> username.getUsername().equals(user.getUsername()))) {
+        /*if (!data.stream().anyMatch(username -> username.getUsername().equals(user.getUsername()))) {
             data.add(user);
             data.forEach((s) -> System.out.println(s.getUsername()));
             tableView.getColumns().add(tableColumn);
@@ -65,5 +74,5 @@ public class FacingProcess extends Overview {
         } else {
             System.out.println("Already exists!");
         }
-    }
+    }*/
 }

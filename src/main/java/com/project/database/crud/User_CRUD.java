@@ -12,8 +12,16 @@ import com.project.controller.process.LogInProcess;
 import com.project.database.MongoClientConnection;
 import com.project.model.User;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -145,6 +153,51 @@ public class User_CRUD {
             myFriend + "not exists :(";
             System.out.println(out);
 
+        } catch (MongoException e) {e.printStackTrace();}
+    }
+
+    public void listFriends (TableView<User> tableView, String usernameAccount) {
+
+        ObservableList<User> listFriends = FXCollections.observableArrayList();
+
+        try {
+            database = MongoClientConnection.getInstance().getDatabase();
+            mongoClient = MongoClientConnection.getInstance().getMongoClient();
+
+            MongoCollection<Document> collection = database.getCollection("user");
+
+            MongoCursor<Document> cursor = collection.find().iterator();
+
+            if (tableView.getItems().isEmpty()) {
+                tableView.getColumns().clear();
+            }
+
+            TableColumn<User, String> tableColumn = new TableColumn<>();
+            tableColumn.setPrefWidth(tableView.getPrefWidth());
+            tableColumn.setText("List Friends");
+
+            tableColumn.setCellValueFactory(
+                new PropertyValueFactory<User, String>("username")
+            );
+
+            while (cursor.hasNext()) {
+                Document userDocument = cursor.next();
+                if (userDocument.getString("username").equals(usernameAccount)) {
+                    List<String> friendList = (List<String>) userDocument.get("friends");
+
+                    if (friendList != null) {
+                        for (String friend : friendList) {
+                            User userFriend = new User();
+                            userFriend.setUsername(friend);
+                            listFriends.add(userFriend);
+                            tableView.getColumns().add(tableColumn);
+                            tableView.setItems(listFriends);
+                        }
+                    }
+                } else {
+                    System.out.println("---");
+                }
+            }
         } catch (MongoException e) {e.printStackTrace();}
     }
 }

@@ -16,6 +16,10 @@ public class FacingController {
     private FacingProcess facingProcess;
     private User_CRUD user_CRUD;
 
+    public FacingController() {
+        user_CRUD = new User_CRUD();
+    }
+
     /*
      * Components
      */
@@ -35,11 +39,10 @@ public class FacingController {
     @FXML
     private void addingFriend () {
         String friend = addFriend.getText();
-        boolean exists =  user_CRUD.isExistsFriend(friend);
-        System.out.println(exists);
-        if (exists) {
-            facingProcess.TableFriendly(tableFriends, friend);
+        if (user_CRUD.isExistsFriend(friend) && friend != "") {
             user_CRUD.addingANewFriend(lblUsername.getText(), friend);
+            tableFriends.getColumns().clear();
+            facingProcess.TableFriendly(tableFriends, lblUsername.getText());
         }
         addFriend.setText("");
     }
@@ -47,10 +50,9 @@ public class FacingController {
     @FXML
     private void initialize () {
         facingProcess = new FacingProcess();
-        user_CRUD = new User_CRUD();
 
         facingProcess.Who(lblUsername);
-        facingProcess.TableFriendly(tableFriends);
+        facingProcess.TableFriendly(tableFriends, lblUsername.getText());
     }
     
 }
