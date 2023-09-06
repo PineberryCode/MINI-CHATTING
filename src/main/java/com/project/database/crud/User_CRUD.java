@@ -18,7 +18,6 @@ import lombok.Setter;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.core.query.Update;
 
 public class User_CRUD {
 
@@ -125,19 +124,26 @@ public class User_CRUD {
             mongoClient = MongoClientConnection.getInstance().getMongoClient();
             MongoCollection<Document> collection = database.getCollection("user");
             
-            Bson filter = Filters.eq("username", Yo);
-            Bson update = Updates.push("friends", myFriend);
+            Bson filterYo = Filters.eq("username", Yo);
+            Bson updateYo = Updates.push("friends", myFriend);
 
-            UpdateResult result = collection.updateOne(filter,update);
+            UpdateResult resultYo = collection.updateOne(filterYo,updateYo);
+            
+            /*
+             * The variables is wrote for more understanding.
+             * This part of the code is for the account of the username 
+             * added as a "friend" to update their friends list.
+             */
 
-            /*out = (result.getModifiedCount() > 0) ? 
-            System.out.println( Yo+"added to "+myFriend) : 
-            myFriend+" not exists :(";*/
-            if (result.getModifiedCount() > 0) {
-                System.out.println(Yo+"added to "+myFriend);
-            } else {
-                System.out.println(myFriend+" not exists");
-            }
+             Bson filterFriend = Filters.eq("username", myFriend);
+             Bson updateFriend = Updates.push("friends", Yo);
+
+            UpdateResult resultFriend = collection.updateOne(filterFriend, updateFriend);
+
+            out = (resultYo.getModifiedCount() > 0 && resultFriend.getModifiedCount() > 0) ?
+            Yo + " and "+myFriend + " are friend right now!" :
+            myFriend + "not exists :(";
+            System.out.println(out);
 
         } catch (MongoException e) {e.printStackTrace();}
     }
