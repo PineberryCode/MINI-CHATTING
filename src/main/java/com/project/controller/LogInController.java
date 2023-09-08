@@ -56,7 +56,7 @@ public class LogInController {
         stage.close();
 
         registerProcess = new RegisterProcess();
-        registerProcess.ShowFXML(stage, "view/Register", 356, 340);
+        registerProcess.ShowFXML(stage, "view/Register", 396, 340);
     }
 
 }

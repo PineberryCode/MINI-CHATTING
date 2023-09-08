@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
 public class FacingController {
 
@@ -48,16 +49,16 @@ public class FacingController {
         addFriend.setText("");
     }
 
-    private boolean iterateDuplicates (String newFriend) {
-        boolean duplicate = false;
-
-        for (User user : tableFriends.getItems()) {
-            if (user.getUsername().matches(newFriend)) {
-                duplicate = true;
+    @FXML
+    private void typing () {
+        input.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                String msg = input.getText();
+                txaConversation.appendText(lblUsername.getText()+"(:) "+msg+"\n");
+                input.clear();
+                e.consume();
             }
-        }
-        //System.out.println("Duplicate?: "+duplicate);
-        return duplicate;
+        });
     }
 
     @FXML
@@ -66,7 +67,17 @@ public class FacingController {
 
         facingProcess.Who(lblUsername);
         facingProcess.TableFriendly(tableFriends, lblUsername.getText());
-        //iterateDuplicates("mindlunny");
+    }
+
+    private boolean iterateDuplicates (String newFriend) {
+        boolean duplicate = false;
+
+        for (User user : tableFriends.getItems()) {
+            if (user.getUsername().matches(newFriend)) {
+                duplicate = true;
+            }
+        }
+        return duplicate;
     }
     
 }

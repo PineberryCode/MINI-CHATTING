@@ -24,7 +24,7 @@
                   <TextArea fx:id="txaConversation" prefHeight="200.0" prefWidth="315.0" promptText="A new story?" />
                </content>
             </ScrollPane>
-            <TextField fx:id="input" layoutX="227.0" layoutY="306.0" prefHeight="25.0" prefWidth="331.0" />
+            <TextField onAction="#typing" fx:id="input" layoutX="227.0" layoutY="306.0" prefHeight="25.0" prefWidth="331.0" promptText="Type" />
          </children>
       </Pane>
    </children>
