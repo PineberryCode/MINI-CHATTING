@@ -6,26 +6,25 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class userSevices extends handler /*implements Runnable*/ {
+public class userSevices extends handler {
     
     private int PORT = 5000;
 
-    //@Override
-    public void socketUser() {
+    public String socketUser(String msg) {
         try {
-            user = new Socket("192.168.100.9", PORT);
+            user = new Socket("192.168.100.9", PORT); //sending to the server.
             out = new PrintWriter(user.getOutputStream(), true);
             reader = new BufferedReader(new InputStreamReader(user.getInputStream()));
 
             inputHandler input = new inputHandler();
             Thread thread = new Thread(input);
             thread.start();
-
-            String msg;
-            while ((msg = reader.readLine()) != null) {
-                System.out.println(msg); // This will showed in the TextArea.
+            while ((msg = reader.readLine()) == null) {
+                System.out.println("You cannot send a null such as a message.");
             }
+
         } catch (IOException e) {e.getMessage(); shutdown();}
+        return msg;
     }
     
 }

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.project.controller.services.connectionHandler;
 import com.project.controller.services.handler;
 
 public class myServer extends handler implements Runnable {
@@ -38,4 +37,8 @@ public class myServer extends handler implements Runnable {
     }
     
     //Please remember turn on the server
+    public static void main (String[] args) {
+        myServer m = new myServer();
+        m.run();
+    }
 }

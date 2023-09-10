@@ -20,10 +20,6 @@ import com.project.controller.api.Getting;
 public class RSA {
 
     private static RSA instance;
-    
-    private static String name_file = "rsa".concat(".pub");
-    private static String __dirname__ = System.getProperty("user.dir");
-    public static String path_file = __dirname__.concat("/src/main/java/com/project/static/"+name_file);
 
     private PublicKey KEY_PUBLIC;
     private PrivateKey KEY_PRIVATE;
