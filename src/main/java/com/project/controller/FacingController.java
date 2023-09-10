@@ -6,6 +6,7 @@ import com.project.model.User;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -67,6 +68,18 @@ public class FacingController {
 
         facingProcess.Who(lblUsername);
         facingProcess.TableFriendly(tableFriends, lblUsername.getText());
+
+        clicking();
+    }
+
+    private void clicking () {
+        tableFriends.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        tableFriends.setOnMouseClicked(e -> {
+            if (e.getClickCount() == 2) {
+                User selectedItem = tableFriends.getSelectionModel().getSelectedItem();
+                System.out.println("Clicked"+selectedItem.getUsername());
+            }
+        });
     }
 
     private boolean iterateDuplicates (String newFriend) {

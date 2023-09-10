@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class inputHandler extends general implements Runnable {
+public class inputHandler extends handler implements Runnable {
 
     @Override
     public void run() {

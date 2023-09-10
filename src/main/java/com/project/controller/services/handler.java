@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public abstract class general {
+public abstract class handler {
     protected Socket user;
     protected BufferedReader reader;
     protected PrintWriter out;

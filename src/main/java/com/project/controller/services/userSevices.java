@@ -6,12 +6,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class userSevices extends general implements Runnable {
+public class userSevices extends handler /*implements Runnable*/ {
     
     private int PORT = 5000;
 
-    @Override
-    public void run() {
+    //@Override
+    public void socketUser() {
         try {
             user = new Socket("192.168.100.9", PORT);
             out = new PrintWriter(user.getOutputStream(), true);
