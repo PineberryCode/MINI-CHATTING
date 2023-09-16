@@ -1,7 +1,7 @@
 package com.project.controller;
 
 import com.project.controller.process.FacingProcess;
-import com.project.controller.services.userSevices;
+import com.project.controller.services.UserSocket;
 import com.project.database.crud.User_CRUD;
 import com.project.model.User;
 
@@ -14,10 +14,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 
-public class FacingController /*mplements Runnable*/ {
+public class FacingController {
 
     private FacingProcess facingProcess;
     private User_CRUD user_CRUD;
+    private UserSocket userSocket;
 
     public FacingController() {
         user_CRUD = new User_CRUD();
@@ -42,8 +43,8 @@ public class FacingController /*mplements Runnable*/ {
     @FXML
     private void addingFriend () {
         String friend = addFriend.getText();
-        if (user_CRUD.isExistsFriend(friend) && friend != "" 
-            && friend != lblUsername.getText() && !iterateDuplicates(friend)) {
+        if (user_CRUD.isExistsFriend(friend) && friend != "" &&
+            friend != lblUsername.getText() && !iterateDuplicates(friend)) {
             user_CRUD.addingANewFriend(lblUsername.getText(), friend);
             tableFriends.getColumns().clear();
             facingProcess.TableFriendly(tableFriends, lblUsername.getText());
@@ -55,13 +56,22 @@ public class FacingController /*mplements Runnable*/ {
     private void typing () {
         input.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
+                
+                //userSocket = new UserSocket();
+                //userSocket.run();
+
                 String msg = input.getText();
-                txaConversation.appendText(lblUsername.getText()+"(:) "+msg+"\n");
-                //userSevices services = new userSevices();
-                //services.socketUser(msg,txaConversation);
-                //userSevices.socketUser(msg, txaConversation);
+                //txaConversation.appendText(msg);
+                //userSocket.run();
+                System.out.println(msg);
+                
                 input.clear();
                 e.consume();
+
+                /*Avoid freezing the interface*/
+                Thread userSocketThread = new Thread(new UserSocket());
+                userSocketThread.start();
+                //System.out.println(msg);
             }
         });
     }
@@ -85,12 +95,6 @@ public class FacingController /*mplements Runnable*/ {
             }
         });
     }
-
-    /*@Override
-    public void run() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'run'");
-    }*/
 
     private boolean iterateDuplicates (String newFriend) {
         boolean duplicate = false;

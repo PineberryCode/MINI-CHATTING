@@ -195,7 +195,7 @@ public class User_CRUD {
                         }
                     }
                 } else {
-                    System.out.println("---");
+                    System.out.println("Iterating users collection");
                 }
             }
         } catch (MongoException e) {e.printStackTrace();}
