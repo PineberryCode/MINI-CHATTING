@@ -16,13 +16,30 @@ import javafx.scene.input.KeyCode;
 
 public class FacingController {
 
+    public static FacingController THE_ONE;
     private FacingProcess facingProcess;
     private User_CRUD user_CRUD;
-    private UserSocket userSocket;
+    private String messaging;
+    //private UserSocket userSocket;
 
     public FacingController() {
         user_CRUD = new User_CRUD();
+        THE_ONE = this;
+        /*Avoid freezing the interface*/
+        Thread userSocketThread = new Thread(new UserSocket());
+        userSocketThread.start();
+        //userSocket = new UserSocket(); // Then remove
     }
+
+    public static FacingController getInstance () {
+        if (THE_ONE == null) {
+            THE_ONE = new FacingController();
+        }
+        return THE_ONE;
+    }
+
+    public void setMessaging (String messaging) {this.messaging = messaging;}
+    public String getMessaging() {return this.messaging;}
 
     /*
      * Components
@@ -61,17 +78,15 @@ public class FacingController {
                 //userSocket.run();
 
                 String msg = input.getText();
+                setMessaging("Testing: "+msg);
                 //txaConversation.appendText(msg);
                 //userSocket.run();
                 System.out.println(msg);
                 
                 input.clear();
                 e.consume();
-
-                /*Avoid freezing the interface*/
-                Thread userSocketThread = new Thread(new UserSocket());
-                userSocketThread.start();
-                //System.out.println(msg);
+                //System.out.println("HERE");
+                //System.out.println(getMessaging());
             }
         });
     }

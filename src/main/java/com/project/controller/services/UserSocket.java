@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import com.project.controller.FacingController;
+
 import javafx.application.Platform;
 import javafx.scene.control.TextArea;
 
@@ -13,6 +15,11 @@ public class UserSocket extends Handler implements Runnable {
     
     private String message;
     private TextArea txa;
+    private FacingController facingController;
+
+    //public UserSocket (String message) {this.message = message;}
+
+    public UserSocket() {facingController = FacingController.getInstance();}
 
     @Override
     public void run() {
@@ -31,6 +38,7 @@ public class UserSocket extends Handler implements Runnable {
                         txa.appendText(message);
                     }*/
                     System.out.println(message);
+                    System.out.println(facingController.getMessaging());
                 });
                 //System.out.println(message);
             }
@@ -71,9 +79,9 @@ public class UserSocket extends Handler implements Runnable {
     }
 
     public static void main (String[] args) {
-        UserSocket u = new UserSocket();
+        //UserSocket u = new UserSocket();
         //u.run();
-        u.run();
+        //u.run();
     }
     
 }

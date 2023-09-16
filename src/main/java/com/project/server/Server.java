@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import javafx.scene.control.TextArea;
-
 public class Server implements Runnable {
 
     private ArrayList<ConnectionHandler> userConnections;
