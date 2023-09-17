@@ -73,7 +73,6 @@ public class Server implements Runnable {
         private Socket user;
         private BufferedReader reader;
         private PrintWriter writer;
-        //private String nickname = FacingController.getInstance().lblUsername.getText();
 
         public ConnectionHandler (Socket user) {this.user = user;}
 
@@ -87,7 +86,9 @@ public class Server implements Runnable {
                 //sendMessage("Your are Welcome "+nickname+"!");
                 //System.out.println(nickname+" connected");
                 //broadcast(nickname + " joined the chat");
-                //broadcast("User X joined the chat.");
+                String[] nickname = reader.readLine().split(":");
+                String part01Nickname = nickname[0];
+                System.out.println(part01Nickname+" joined the chat!");
                 String message;
                 while ((message = reader.readLine()) != null) {
                     //System.out.println(nickname);
