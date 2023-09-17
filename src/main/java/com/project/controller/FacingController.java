@@ -1,6 +1,13 @@
 package com.project.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+
 import com.project.controller.process.FacingProcess;
+import com.project.controller.services.Handler;
 import com.project.controller.services.UserSocket;
 import com.project.database.crud.User_CRUD;
 import com.project.model.User;
@@ -16,10 +23,29 @@ import javafx.scene.input.KeyCode;
 
 public class FacingController {
 
-    public static FacingController THE_ONE;
+    /*
+     * Components
+     */
+    @FXML
+    public Label lblUsername;
+    @FXML
+    TextField input;
+    @FXML
+    TextField addFriend;
+    @FXML
+    public TextArea txaConversation;
+    @FXML
+    TableView<User> tableFriends;
+    @FXML
+    TableColumn<User, String> columnFriends;
+
+    private static FacingController THE_ONE;
     private FacingProcess facingProcess;
     private User_CRUD user_CRUD;
     private String messaging;
+    private boolean actived;
+
+    public boolean isActived() {return actived;}
     //private UserSocket userSocket;
 
     public FacingController() {
@@ -40,27 +66,12 @@ public class FacingController {
     public void setMessaging (String messaging) {this.messaging = messaging;}
     public String getMessaging() {return this.messaging;}
 
-    /*
-     * Components
-     */
-    @FXML
-    public Label lblUsername;
-    @FXML
-    TextField input;
-    @FXML
-    TextField addFriend;
-    @FXML
-    TextArea txaConversation;
-    @FXML
-    TableView<User> tableFriends;
-    @FXML
-    TableColumn<User, String> columnFriends;
-
     @FXML
     private void addingFriend () {
         String friend = addFriend.getText();
         if (user_CRUD.isExistsFriend(friend) && friend != "" &&
             friend != lblUsername.getText() && !iterateDuplicates(friend)) {
+
             user_CRUD.addingANewFriend(lblUsername.getText(), friend);
             tableFriends.getColumns().clear();
             facingProcess.TableFriendly(tableFriends, lblUsername.getText());
@@ -72,14 +83,16 @@ public class FacingController {
     private void typing () {
         input.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
-                
-                String msg = input.getText();
-                setMessaging(msg);
+                messaging = lblUsername.getText()+": "+input.getText();
+                setMessaging(messaging);
+
+                //txaConversation.appendText(messaging);
 
                 input.clear();
                 e.consume();
             }
         });
+        
     }
 
     @FXML
@@ -112,4 +125,6 @@ public class FacingController {
         }
         return duplicate;
     }
+
+    
 }

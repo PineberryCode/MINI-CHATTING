@@ -13,6 +13,8 @@ import java.util.concurrent.Executors;
 
 import com.project.controller.FacingController;
 
+import javafx.application.Platform;
+
 public class Server implements Runnable {
 
     private ArrayList<ConnectionHandler> userConnections;
@@ -43,15 +45,9 @@ public class Server implements Runnable {
         for (ConnectionHandler connectionHandler : userConnections) {
             if (connectionHandler != null) {
                 connectionHandler.sendMessage(msg);
-            } else{
-                System.out.println("Error");
             }
         }
     }
-
-    /*public String messageForTxtArea (String msg) {
-        sendMessage(msg);
-    }*/
 
     public void shutdown() {
         done = true;
@@ -81,18 +77,18 @@ public class Server implements Runnable {
             try {
                 writer = new PrintWriter(user.getOutputStream(), true);
                 reader = new BufferedReader(new InputStreamReader(user.getInputStream()));
-                //sendMessage("Enter your nickname: ");
-                //nickname = reader.readLine();
-                //sendMessage("Your are Welcome "+nickname+"!");
-                //System.out.println(nickname+" connected");
-                //broadcast(nickname + " joined the chat");
+                
+                System.out.println("Server running on ...");
+
                 String[] nickname = reader.readLine().split(":");
                 String part01Nickname = nickname[0];
                 System.out.println(part01Nickname+" joined the chat!");
+
                 String message;
                 while ((message = reader.readLine()) != null) {
                     //System.out.println(nickname);
                     broadcast(message);
+                    
                 }
             } catch (IOException e) {e.printStackTrace();shutdown();}
         }

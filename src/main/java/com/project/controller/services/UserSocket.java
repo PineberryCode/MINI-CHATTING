@@ -8,12 +8,9 @@ import java.net.Socket;
 
 import com.project.controller.FacingController;
 
-import javafx.scene.control.TextArea;
-
 public class UserSocket extends Handler implements Runnable {
-    
+
     private String message;
-    private TextArea txa;
 
     @Override
     public void run() {
@@ -25,21 +22,14 @@ public class UserSocket extends Handler implements Runnable {
             InputHandler inputHandler = new InputHandler();
             Thread thread = new Thread(inputHandler);
             thread.start();
-
-            while ((message = reader.readLine()) != null) {
-                /*Platform.runLater(() -> {
-                    /*if (txa.getId().equals("txaConversation")) {
-                        txa.appendText(message);
-                    }*/
-                    //System.out.println(facingController.getMessaging());
-                /* });*/
-                //System.out.println(message);
+            while (( message = reader.readLine()) != null) {
                 System.out.println(message);
+                FacingController.getInstance().txaConversation.appendText(message+"\n");
             }
         } catch (IOException e) {e.getMessage();shutdown();}
     }
 
-    public void shutdown() {
+    public void shutdown() { //isShutdown
         done = true;
         try {
             reader.close();
@@ -57,20 +47,15 @@ public class UserSocket extends Handler implements Runnable {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             //try {
                 while (!done) {
-                    String msg = reader.readLine();
-                    msg = FacingController.getInstance().lblUsername.getText()+": ".concat(FacingController.getInstance().getMessaging());
-                    writer.println(msg);
+                    //System.out.println(FacingController.getInstance().isActived());
+                    message = reader.readLine();
+                    message = FacingController.getInstance().getMessaging();
+                    writer.println(message);
+                    //System.out.println(FacingController.getInstance().isActived());
+                    //System.out.println(done);
                 }
-            } catch (Exception e) {
-                shutdown();
-            }
+            } catch (Exception e) {shutdown();}
         }
-    }
-
-    public static void main (String[] args) {
-        //UserSocket u = new UserSocket();
-        //u.run();
-        //u.run();
     }
     
 }
