@@ -58,7 +58,7 @@ public class UserSocket extends Handler implements Runnable {
             //try {
                 while (!done) {
                     String msg = reader.readLine();
-                    msg = FacingController.getInstance().getMessaging();
+                    msg = FacingController.getInstance().lblUsername.getText()+": ".concat(FacingController.getInstance().getMessaging());
                     writer.println(msg);
                 }
             } catch (Exception e) {

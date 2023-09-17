@@ -1,6 +1,6 @@
 module com.project {
     opens com.project.model;
-    
+
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
