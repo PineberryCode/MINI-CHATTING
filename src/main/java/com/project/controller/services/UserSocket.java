@@ -8,18 +8,12 @@ import java.net.Socket;
 
 import com.project.controller.FacingController;
 
-import javafx.application.Platform;
 import javafx.scene.control.TextArea;
 
 public class UserSocket extends Handler implements Runnable {
     
     private String message;
     private TextArea txa;
-    private FacingController facingController;
-
-    //public UserSocket (String message) {this.message = message;}
-
-    public UserSocket() {facingController = FacingController.getInstance();}
 
     @Override
     public void run() {
@@ -33,18 +27,16 @@ public class UserSocket extends Handler implements Runnable {
             thread.start();
 
             while ((message = reader.readLine()) != null) {
-                Platform.runLater(() -> {
+                /*Platform.runLater(() -> {
                     /*if (txa.getId().equals("txaConversation")) {
                         txa.appendText(message);
                     }*/
-                    System.out.println(message);
-                    System.out.println(facingController.getMessaging());
-                });
+                    //System.out.println(facingController.getMessaging());
+                /* });*/
                 //System.out.println(message);
+                System.out.println(message);
             }
-        } catch (IOException e) {
-            shutdown();
-        }
+        } catch (IOException e) {e.getMessage();shutdown();}
     }
 
     public void shutdown() {
@@ -62,17 +54,14 @@ public class UserSocket extends Handler implements Runnable {
 
         @Override
         public void run() {
-            try (BufferedReader inReader = new BufferedReader(new InputStreamReader(System.in))) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            //try {
                 while (!done) {
-                    String msg = inReader.readLine();
-                    if (msg.equals("--quit")) {
-                        writer.println(msg);
-                        shutdown();
-                    } else {
-                        writer.println(msg); // THIS ONE
-                    }
+                    String msg = reader.readLine();
+                    msg = FacingController.getInstance().getMessaging();
+                    writer.println(msg);
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 shutdown();
             }
         }

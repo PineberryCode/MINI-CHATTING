@@ -23,12 +23,11 @@ public class FacingController {
     //private UserSocket userSocket;
 
     public FacingController() {
-        user_CRUD = new User_CRUD();
         THE_ONE = this;
-        /*Avoid freezing the interface*/
+        user_CRUD = new User_CRUD();
+        /* Avoid freezing */
         Thread userSocketThread = new Thread(new UserSocket());
         userSocketThread.start();
-        //userSocket = new UserSocket(); // Then remove
     }
 
     public static FacingController getInstance () {
@@ -45,7 +44,7 @@ public class FacingController {
      * Components
      */
     @FXML
-    private Label lblUsername;
+    public Label lblUsername;
     @FXML
     TextField input;
     @FXML
@@ -74,19 +73,11 @@ public class FacingController {
         input.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
                 
-                //userSocket = new UserSocket();
-                //userSocket.run();
-
                 String msg = input.getText();
-                setMessaging("Testing: "+msg);
-                //txaConversation.appendText(msg);
-                //userSocket.run();
-                System.out.println(msg);
-                
+                setMessaging(msg);
+
                 input.clear();
                 e.consume();
-                //System.out.println("HERE");
-                //System.out.println(getMessaging());
             }
         });
     }
@@ -121,5 +112,4 @@ public class FacingController {
         }
         return duplicate;
     }
-    
 }

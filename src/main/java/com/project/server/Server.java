@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.project.controller.FacingController;
+
 public class Server implements Runnable {
 
     private ArrayList<ConnectionHandler> userConnections;
@@ -41,6 +43,8 @@ public class Server implements Runnable {
         for (ConnectionHandler connectionHandler : userConnections) {
             if (connectionHandler != null) {
                 connectionHandler.sendMessage(msg);
+            } else{
+                System.out.println("Error");
             }
         }
     }
@@ -69,7 +73,7 @@ public class Server implements Runnable {
         private Socket user;
         private BufferedReader reader;
         private PrintWriter writer;
-        private String nickname = "User";
+        private String nickname = "FacingController.getInstance().lblUsername.getText()"; //No funciona
 
         public ConnectionHandler (Socket user) {this.user = user;}
 
@@ -83,14 +87,13 @@ public class Server implements Runnable {
                 //sendMessage("Your are Welcome "+nickname+"!");
                 //System.out.println(nickname+" connected");
                 //broadcast(nickname + " joined the chat");
+                broadcast("User X joined the chat.");
                 String message;
                 while ((message = reader.readLine()) != null) {
-                    broadcast(nickname+": "+message);
+                    //System.out.println(nickname);
+                    broadcast("nickname"+": "+message);
                 }
-            } catch (IOException e) {
-                shutdown();
-                e.printStackTrace();
-            }
+            } catch (IOException e) {e.printStackTrace();shutdown();}
         }
 
         public void sendMessage(String msg) {
