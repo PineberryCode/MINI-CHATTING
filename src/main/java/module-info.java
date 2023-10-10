@@ -9,7 +9,7 @@ module com.project {
     requires org.mongodb.driver.sync.client;
     requires org.mongodb.driver.core;
 
-    //Spring dependencies
+    //Spring requirements
     requires spring.beans;
     requires spring.context;
     requires spring.data.mongodb;

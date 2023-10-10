@@ -58,5 +58,5 @@ public class LogInController {
         registerProcess = new RegisterProcess();
         registerProcess.ShowFXML(stage, "view/Register", 396, 340);
     }
-
+    //Note: @FXML controller and !@FXML in process dir || (@FXML && !@FXML) in controller dir
 }

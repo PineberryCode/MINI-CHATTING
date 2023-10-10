@@ -3,6 +3,7 @@ package com.project.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -13,6 +14,8 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import com.project.App;
+import com.project.controller.process.LogInProcess;
 import com.project.controller.process.RegisterProcess;
 import com.project.database.crud.User_CRUD;
 import com.project.model.User;
@@ -22,6 +25,7 @@ public class RegisterController {
     private User user;
     private User_CRUD user_CRUD;
     private RegisterProcess registerProcess;
+    private LogInProcess logInProcess;
 
     /*
      * Components
@@ -51,6 +55,15 @@ public class RegisterController {
                 | BadPaddingException | InvalidKeySpecException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void toBack() throws IOException {
+        Stage stage = App.primaryStage;
+        stage.close();
+
+        logInProcess = new LogInProcess();
+        logInProcess.ShowFXML(stage, "view/LogIn", 572, 431);
     }
 
 }

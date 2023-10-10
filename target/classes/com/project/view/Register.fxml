@@ -19,7 +19,7 @@
                   <TextField fx:id="tfE_mail" layoutX="98.0" layoutY="74.0" prefHeight="40.0" prefWidth="200.0" promptText="E-mail" />
                   <Label layoutX="98.0" layoutY="30.0" prefHeight="17.0" prefWidth="200.0" text="WELCOME TO MINI-CHATTING" />
                   <Button layoutX="98.0" layoutY="266.0" mnemonicParsing="false" onAction="#RegisterUser" prefHeight="40.0" prefWidth="200.0" text="JOIN US" />
-                  <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" text="Back" />
+                  <Button onAction="#toBack" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" text="Back" />
                </children>
             </Pane>
          </children></VBox>

@@ -11,10 +11,6 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.project.controller.FacingController;
-
-import javafx.application.Platform;
-
 public class Server implements Runnable {
 
     private ArrayList<ConnectionHandler> userConnections;
@@ -86,7 +82,6 @@ public class Server implements Runnable {
 
                 String message;
                 while ((message = reader.readLine()) != null) {
-                    //System.out.println(nickname);
                     broadcast(message);
                     
                 }

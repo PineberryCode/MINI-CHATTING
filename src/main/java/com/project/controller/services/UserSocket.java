@@ -45,14 +45,10 @@ public class UserSocket extends Handler implements Runnable {
         @Override
         public void run() {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            //try {
                 while (!done) {
-                    //System.out.println(FacingController.getInstance().isActived());
                     message = reader.readLine();
                     message = FacingController.getInstance().getMessaging();
                     writer.println(message);
-                    //System.out.println(FacingController.getInstance().isActived());
-                    //System.out.println(done);
                 }
             } catch (Exception e) {shutdown();}
         }

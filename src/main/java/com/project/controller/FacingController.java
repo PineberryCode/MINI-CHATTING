@@ -46,11 +46,11 @@ public class FacingController {
     private boolean actived;
 
     public boolean isActived() {return actived;}
-    //private UserSocket userSocket;
 
     public FacingController() {
         THE_ONE = this;
         user_CRUD = new User_CRUD();
+        
         /* Avoid freezing */
         Thread userSocketThread = new Thread(new UserSocket());
         userSocketThread.start();
@@ -85,8 +85,6 @@ public class FacingController {
             if (e.getCode() == KeyCode.ENTER) {
                 messaging = lblUsername.getText()+": "+input.getText();
                 setMessaging(messaging);
-
-                //txaConversation.appendText(messaging);
 
                 input.clear();
                 e.consume();
