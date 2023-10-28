@@ -6,7 +6,7 @@
 ### Configure
 Create the **config** dir into the **database** dir. Into the **config** make and set up an interface called **Parameters** and paste the connection line that provides [MongoDB Cloud](https://account.mongodb.com/account/login):
 ```JAVA
-"mongodb+srv://MINDLUNNY:<password>@cluster0.cvb3g0s.mongodb.net/?retryWrites=true&w=majority;"
+"mongodb+srv://<username>:<password>@cluster0.cvb3g0s.mongodb.net/?retryWrites=true&w=majority;"
 ```
 You can find the string connection in the MongoDB section **"Connect to cluster"** in **"Drivers"** then select **"JAVA"**:
 
