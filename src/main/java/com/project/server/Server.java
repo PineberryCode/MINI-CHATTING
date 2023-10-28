@@ -83,7 +83,6 @@ public class Server implements Runnable {
                 String message;
                 while ((message = reader.readLine()) != null) {
                     broadcast(message);
-                    
                 }
             } catch (IOException e) {e.printStackTrace();shutdown();}
         }

@@ -1,13 +1,6 @@
 package com.project.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-
 import com.project.controller.process.FacingProcess;
-import com.project.controller.services.Handler;
 import com.project.controller.services.UserSocket;
 import com.project.database.crud.User_CRUD;
 import com.project.model.User;
@@ -20,6 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import lombok.Getter;
+import lombok.Setter;
 
 public class FacingController {
 
@@ -29,7 +24,7 @@ public class FacingController {
     @FXML
     public Label lblUsername;
     @FXML
-    TextField input;
+    public TextField input;
     @FXML
     TextField addFriend;
     @FXML
@@ -43,13 +38,20 @@ public class FacingController {
     private FacingProcess facingProcess;
     private User_CRUD user_CRUD;
     private String messaging;
+    @Getter
+    @Setter
     private boolean actived;
 
-    public boolean isActived() {return actived;}
+    @Getter
+    @Setter
+    private boolean enterPressed;
 
     public FacingController() {
         THE_ONE = this;
         user_CRUD = new User_CRUD();
+        input = new TextField();
+        txaConversation = new TextArea();
+        setEnterPressed(false);
         
         /* Avoid freezing */
         Thread userSocketThread = new Thread(new UserSocket());
@@ -85,12 +87,12 @@ public class FacingController {
             if (e.getCode() == KeyCode.ENTER) {
                 messaging = lblUsername.getText()+": "+input.getText();
                 setMessaging(messaging);
+                setEnterPressed(true);
 
                 input.clear();
                 e.consume();
             }
         });
-        
     }
 
     @FXML

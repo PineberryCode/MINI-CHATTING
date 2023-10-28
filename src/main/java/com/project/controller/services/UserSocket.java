@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-
 import com.project.controller.FacingController;
 
 public class UserSocket extends Handler implements Runnable {
@@ -44,13 +43,33 @@ public class UserSocket extends Handler implements Runnable {
 
         @Override
         public void run() {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            /*try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
                 while (!done) {
                     message = reader.readLine();
                     message = FacingController.getInstance().getMessaging();
                     writer.println(message);
                 }
-            } catch (Exception e) {shutdown();}
+            } catch (Exception e) {shutdown();}*/
+            try {
+                while (!done) {
+                    System.out.println("hola: "+FacingController.getInstance().isEnterPressed());
+                    while (!FacingController.getInstance().isEnterPressed()) {
+                        Thread.sleep(10);
+                    }
+
+                    String msg = FacingController.getInstance().getMessaging();
+
+                    if (!msg.isEmpty()) {
+                        writer.println(msg);
+                        FacingController.getInstance().txaConversation.appendText(msg + "\n");
+                        FacingController.getInstance().setEnterPressed(false);
+                    }
+
+                }
+            } catch (InterruptedException e) {
+                System.out.println("InputHandlerClass: "+e);
+                shutdown();
+            }
         }
     }
     

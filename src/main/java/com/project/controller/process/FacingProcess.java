@@ -11,7 +11,6 @@ import javafx.scene.control.TableView;
 public class FacingProcess extends Overview {
     final ObservableList<User> data;
     private User_CRUD user_CRUD;
-    private User user;
 
     public FacingProcess () {
         data = FXCollections.observableArrayList();
