@@ -1,6 +1,9 @@
 # MINI-CHATTING
-### Summarizes
+### Summary
+This application has a login and an account registration elaborated in **fxml**. The passwords are encrypted with RSA, also you have possibility of add friends.
+### Overview
 
+[![Mini Chat video - Overview](https://img.youtube.com/vi/0oSjsvoU0fQ/0.jpg)](https://youtu.be/0oSjsvoU0fQ)
 
 - - -
 ### Configure
@@ -14,3 +17,4 @@ To remember You should clone the repo [quarkus-api-rsa](https://github.com/Pineb
 ###### Note_01: Run first quarkus-api-rsa before MINI-CHATTING.
 ###### Note_02: For communication between users, You shall turn on the server first.
 - - -
+Note: This application has things to improve, such as a user can communicate with another **specific** user because it looks like a **chat room**.
