@@ -22,7 +22,7 @@ import com.project.model.User;
 
 public class RegisterController {
 
-    private User user;
+    //private User user;
     private User_CRUD user_CRUD;
     private RegisterProcess registerProcess;
     private LogInProcess logInProcess;
