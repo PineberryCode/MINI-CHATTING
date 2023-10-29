@@ -12,7 +12,6 @@ public class App extends Application {
 
     public static Stage primaryStage;
     private LogInProcess loginProcess;
-    //IMPORTANT! You have to use Redis for the login and conversation.
 
     public static void main (String[] args) {
         launch(args);
