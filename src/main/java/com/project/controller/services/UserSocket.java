@@ -19,10 +19,6 @@ public class UserSocket extends Handler implements Runnable {
             Thread thread = new Thread(new InputHandler());
             thread.start();
 
-            /*while (message == null) {
-                Thread.sleep(10);
-            }*/
-
             System.out.println("UserSocket: "+message);
             
             while ((message = reader.readLine()) != null) {
@@ -36,13 +32,6 @@ public class UserSocket extends Handler implements Runnable {
 
         @Override
         public void run() {
-            /*try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-                while (!done) {
-                    message = reader.readLine();
-                    message = FacingController.getInstance().getMessaging();
-                    writer.println(message);
-                }
-            } catch (Exception e) {shutdown();}*/
             try {
                 while (!done) {
                     
@@ -54,11 +43,10 @@ public class UserSocket extends Handler implements Runnable {
                     
                     if (!message.isEmpty()) { //Improve up
                         writer.println(message);
-                        System.out.println("writer: "+message);
-                        //message = reader.readLine();
+                        
                         Thread.sleep(100);
-                        System.out.println("Writer after: "+message);
-                        //FacingController.getInstance().txaConversation.appendText(msg + "\n");
+                        
+                        
                         FacingController.getInstance().setEnterPressed(false);
                     }
 

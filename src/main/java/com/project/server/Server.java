@@ -45,7 +45,7 @@ public class Server implements Runnable {
         }
     }
 
-    public void shutdown() {
+    public void shutdown() { // Improve
         done = true;
         try {
             pool.shutdown();
@@ -75,15 +75,16 @@ public class Server implements Runnable {
                 reader = new BufferedReader(new InputStreamReader(user.getInputStream()));
                 
                 System.out.println("Anonymous user connected");
-                for (ConnectionHandler c : userConnections) {
+                /*for (ConnectionHandler c : userConnections) {
                     System.out.println("User: "+c);
-                }
+                }*/
                 
                 String message;
 
                 while ((message = reader.readLine()) != null) {
                     broadcast(message);
                 }
+
             } catch (IOException e) {e.printStackTrace();shutdown();}
         }
 
