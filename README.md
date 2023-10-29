@@ -3,6 +3,8 @@
 This application has a login and an account registration elaborated in **fxml**. The passwords are encrypted with RSA, also you have possibility of add friends.
 ### Overview
 
+[![Mini Chat video - Overview](https://img.youtube.com/vi/0oSjsvoU0fQ/0.jpg)](https://youtu.be/0oSjsvoU0fQ)
+
 - - -
 ### Configure
 Create the **config** dir into the **database** dir. Into the **config** make and set up an interface called **Parameters** and paste the connection line that provides [MongoDB Cloud](https://account.mongodb.com/account/login):
