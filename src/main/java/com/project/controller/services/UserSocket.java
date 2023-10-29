@@ -9,7 +9,7 @@ import com.project.controller.FacingController;
 
 public class UserSocket extends Handler implements Runnable {
 
-    private String message;
+    //private String message;
 
     @Override
     public void run() {
@@ -18,25 +18,23 @@ public class UserSocket extends Handler implements Runnable {
             writer = new PrintWriter(user.getOutputStream(), true);
             reader = new BufferedReader(new InputStreamReader(user.getInputStream()));
 
-            InputHandler inputHandler = new InputHandler();
-            Thread thread = new Thread(inputHandler);
+            Thread thread = new Thread(new InputHandler());
             thread.start();
-            while (( message = reader.readLine()) != null) {
+
+            while (message == null) {
+                Thread.sleep(10);
+            }
+
+            //message = FacingController.getInstance().getMessaging();
+
+            System.out.println("UserSocket: "+message);
+            
+            while ((message = reader.readLine()) != null) {
+                //message = reader.readLine();
                 System.out.println(message);
                 FacingController.getInstance().txaConversation.appendText(message+"\n");
             }
-        } catch (IOException e) {e.getMessage();shutdown();}
-    }
-
-    public void shutdown() { //isShutdown
-        done = true;
-        try {
-            reader.close();
-            writer.close();
-            if (!user.isClosed()) {
-                user.close();
-            }
-        } catch (IOException e) {}
+        } catch (IOException | InterruptedException e) {e.getMessage();shutdown();}
     }
 
     class InputHandler implements Runnable {
@@ -52,16 +50,20 @@ public class UserSocket extends Handler implements Runnable {
             } catch (Exception e) {shutdown();}*/
             try {
                 while (!done) {
-                    System.out.println("hola: "+FacingController.getInstance().isEnterPressed());
+                    //System.out.println("hola: "+FacingController.getInstance().isEnterPressed());
                     while (!FacingController.getInstance().isEnterPressed()) {
                         Thread.sleep(10);
                     }
 
-                    String msg = FacingController.getInstance().getMessaging();
-
-                    if (!msg.isEmpty()) {
-                        writer.println(msg);
-                        FacingController.getInstance().txaConversation.appendText(msg + "\n");
+                    message = FacingController.getInstance().getMessaging();
+                    
+                    if (!message.isEmpty()) { //Improve up
+                        writer.println(message);
+                        System.out.println("writer: "+message);
+                        //message = reader.readLine();
+                        Thread.sleep(100);
+                        System.out.println("Writer after: "+message);
+                        //FacingController.getInstance().txaConversation.appendText(msg + "\n");
                         FacingController.getInstance().setEnterPressed(false);
                     }
 

@@ -88,7 +88,7 @@ public class FacingController {
                 messaging = lblUsername.getText()+": "+input.getText();
                 setMessaging(messaging);
                 setEnterPressed(true);
-
+                
                 input.clear();
                 e.consume();
             }
