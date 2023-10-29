@@ -74,13 +74,13 @@ public class Server implements Runnable {
                 writer = new PrintWriter(user.getOutputStream(), true);
                 reader = new BufferedReader(new InputStreamReader(user.getInputStream()));
                 
-                System.out.println("Server running on ...");
-
-                String[] nickname = reader.readLine().split(":");
-                String part01Nickname = nickname[0];
-                System.out.println(part01Nickname+" joined the chat!");
-
+                System.out.println("Anonymous user connected");
+                for (ConnectionHandler c : userConnections) {
+                    System.out.println("User: "+c);
+                }
+                
                 String message;
+
                 while ((message = reader.readLine()) != null) {
                     broadcast(message);
                 }

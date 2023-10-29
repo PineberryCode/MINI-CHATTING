@@ -9,8 +9,6 @@ import com.project.controller.FacingController;
 
 public class UserSocket extends Handler implements Runnable {
 
-    //private String message;
-
     @Override
     public void run() {
         try {
@@ -21,20 +19,17 @@ public class UserSocket extends Handler implements Runnable {
             Thread thread = new Thread(new InputHandler());
             thread.start();
 
-            while (message == null) {
+            /*while (message == null) {
                 Thread.sleep(10);
-            }
-
-            //message = FacingController.getInstance().getMessaging();
+            }*/
 
             System.out.println("UserSocket: "+message);
             
             while ((message = reader.readLine()) != null) {
-                //message = reader.readLine();
                 System.out.println(message);
                 FacingController.getInstance().txaConversation.appendText(message+"\n");
             }
-        } catch (IOException | InterruptedException e) {e.getMessage();shutdown();}
+        } catch (IOException e) {e.getMessage();shutdown();}
     }
 
     class InputHandler implements Runnable {
@@ -50,7 +45,7 @@ public class UserSocket extends Handler implements Runnable {
             } catch (Exception e) {shutdown();}*/
             try {
                 while (!done) {
-                    //System.out.println("hola: "+FacingController.getInstance().isEnterPressed());
+                    
                     while (!FacingController.getInstance().isEnterPressed()) {
                         Thread.sleep(10);
                     }
