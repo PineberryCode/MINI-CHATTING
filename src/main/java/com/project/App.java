@@ -12,6 +12,7 @@ public class App extends Application {
 
     public static Stage primaryStage;
     private LogInProcess loginProcess;
+    //testing rules
 
     public static void main (String[] args) {
         launch(args);
