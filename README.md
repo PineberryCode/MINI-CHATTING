@@ -1,7 +1,7 @@
 # MINI-CHATTING
 ### Summary
 This application has a login and an account registration elaborated in **fxml**. The passwords are encrypted with RSA, also you have possibility of add friends.
-### Overview
+### Preview
 
 [![Mini Chat video - Overview](https://img.youtube.com/vi/0oSjsvoU0fQ/0.jpg)](https://youtu.be/0oSjsvoU0fQ)
 
