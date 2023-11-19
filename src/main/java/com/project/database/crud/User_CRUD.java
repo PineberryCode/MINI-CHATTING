@@ -37,12 +37,13 @@ public class User_CRUD {
     @Setter
     private static String username;
 
-    /* The MongoDB connection is Singleton that's It isn't necessary add "finally block"
+    /* The MongoDB connection is Singleton that's It isn't necessary to add "finally block"
      * to close the connection.
     */
     /*
      * printStackTrace() -> Desarrollo, Depuración.
      * getMessage() -> Usuarios finales.
+     * All "database.getCollection("user");" set up with your clustered name
      */
 
     public boolean validate (String username, String password) throws Exception {
