@@ -30,7 +30,7 @@ public class MongoClientConnection {
 
         try {
             mongoClient = MongoClients.create(settings);
-            database = this.mongoClient.getDatabase("BNKERDB");
+            database = this.mongoClient.getDatabase("BNKERDB"); //Set up with your database name
         } catch (MongoException e) {
             e.printStackTrace();
         }
